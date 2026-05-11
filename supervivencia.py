@@ -813,7 +813,7 @@ else:
                             margin-bottom: 5px;
                             box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
                     <small style="color: #555;">{row.get('FECHA', row.get('FECHA_REGISTRO', 'Sin fecha'))}
-                    <strong style="font-size: 24px; color: #1f77b4;">👤 {row['AUTOR']} dice:</strong><br>
+                    <strong style="font-size: 24px; color: #1f77b4;">👤 {row.get('AUTOR', 'Usuario')} dice:</strong><br>
                     <p style="font-size: 22px; margin-top: 10px;">{row['MENSAJE']}</p>
                 </div>
             """, unsafe_allow_html=True)
