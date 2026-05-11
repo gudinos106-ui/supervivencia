@@ -777,7 +777,28 @@ with tab_comunidad:
     conn = conectar_db()
     # MUY IMPORTANTE: Debes escribir 'rowid,' antes del asterisco '*'
     query = "SELECT rowid, * FROM MURO ORDER BY rowid DESC LIMIT 10"
+    # --- LECTURA SEGURA (Reemplaza tu bloque de df_muro con esto) ---
+try:
+    query = "SELECT * FROM INVENTARIO"
     df_muro = pd.read_sql_query(query, conn)
+except:
+    # Si la tabla está vacía o no existe, creamos un espacio seguro
+    df_muro = pd.DataFrame(columns=['PRODUCTO', 'CANTIDAD', 'FECHA_VENCIMIENTO', 'FECHA_REGISTRO'])
+
+# Si el DataFrame está vacío, le creamos las columnas para que no de error 'ESTADO'
+if df_muro.empty:
+    df_muro['ESTADO'] = []
+else:
+    # Aquí va tu lógica de los semáforos que ya tenías
+    def calcular_estado(row):
+        try:
+            cant = row['CANTIDAD']
+            if cant < 5: return "🔴 BAJO"
+            return "🟢 OK"
+        except:
+            return "⚠️ REVISAR"
+    
+    df_muro['ESTADO'] = df_muro.apply(calcular_estado, axis=1)
     conn.close()
 
     if not df_muro.empty:
