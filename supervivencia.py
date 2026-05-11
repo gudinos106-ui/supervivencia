@@ -804,7 +804,7 @@ else:
     if not df_muro.empty:
         for index, row in df_muro.iterrows():
             # Mantenemos tu diseño de burbuja elegante
-            m_id = row['rowid']
+            m_id = row.get('rowid', 0)
             st.markdown(f"""
                 <div style="background-color: rgba(255, 255, 255, 0.5); 
                             padding: 20px; 
