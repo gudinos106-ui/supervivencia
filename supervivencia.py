@@ -923,20 +923,20 @@ else:
                     conn.close()
                     st.rerun()
         
-               # 2. BOTÓN EDITAR (Lógica simple)
-               if c_ed2.button("✏️ Editar", key=f"edit_{m_id}"):
-                   st.session_state[f"editando_{m_id}"] = True
+              # 2. BOTÓN EDITAR (Le agregamos la _{i} para que sea único)
+                if c_ed2.button("✏️ Editar", key=f"edit_{m_id}_{i}"):
+                    st.session_state[f"editando_{m_id}"] = True
 
                # Si el usuario le dio a editar, mostramos el campo para corregir
-               if st.session_state.get(f"editando_{m_id}", False):
-                   nuevo_texto = st.text_area("Corrige tu mensaje:", value=row['MENSAJE'], key=f"txt_{m_id}")
-                   if st.button("✅ Guardar Cambios", key=f"save_{m_id}"):
-                      conn = conectar_db()
-                      c = conn.cursor()
-                      c.execute("UPDATE MURO SET MENSAJE = ? WHERE rowid = ?", (nuevo_texto, m_id))
-                      conn.commit()
-                      conn.close()
-                      st.session_state[f"editando_{m_id}"] = False
-                      st.rerun()
+                if st.session_state.get(f"editando_{m_id}", False):
+                    nuevo_texto = st.text_area("Corrige tu mensaje:", value=row['MENSAJE'], key=f"txt_{m_id}")
+                    if st.button("✅ Guardar Cambios", key=f"save_{m_id}"):
+                        conn = conectar_db()
+                        c = conn.cursor()
+                        c.execute("UPDATE MURO SET MENSAJE = ? WHERE rowid = ?", (nuevo_texto, m_id))
+                        conn.commit()
+                        conn.close()
+                        st.session_state[f"editando_{m_id}"] = False
+                        st.rerun()
             
                 st.markdown("<br>", unsafe_allow_html=True) # Espacio entre publicaciones
