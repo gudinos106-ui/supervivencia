@@ -906,7 +906,7 @@ else:
             c_ed1, c_ed2, c_spacer = st.columns([1, 1, 4])
             
             # 1. BOTÓN ELIMINAR
-            if c_ed1.button("🗑️ Quitar", key=f"del_{m_id}"):
+            if c_ed1.button("🗑️ Quitar", key=f"pantry_del_{m_id}"):
                 conn = conectar_db()
                 c = conn.cursor()
                 c.execute("DELETE FROM MURO WHERE rowid = ?", (m_id,))
@@ -915,7 +915,7 @@ else:
                 st.rerun()
 
             # 2. BOTÓN EDITAR (Lógica simple)
-            if c_ed2.button("✏️ Editar", key=f"edit_{m_id}"):
+            if c_ed2.button("✏️ Editar", key=f"pantry_edit_{m_id}"):
                 st.session_state[f"editando_{m_id}"] = True
 
             # Si el usuario le dio a editar, mostramos el campo para corregir
