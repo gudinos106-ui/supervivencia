@@ -919,7 +919,7 @@ else:
                     # El botón DEBE tener una key única usando el ID del producto
                     m_id = row.get('rowid', index)
                     with c1: st.write(row.get('PRODUCTO', '---'))
-                    with c2: st.write(row.get('BODEGA', '---'))
+                with c2: st.write(row.get('BODEGA', '---'))
                         conn = conectar_db()
                         c = conn.cursor()
                         # Asegúrate de que la tabla sea la correcta (ej. INVENTARIO)
