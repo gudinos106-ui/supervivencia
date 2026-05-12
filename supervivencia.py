@@ -879,32 +879,32 @@ with tab_comunidad:
                 </div>
             """, unsafe_allow_html=True)
 
-             c_ed1, c_ed2, c_spacer = st.columns([1, 1, 4])
+            c_ed1, c_ed2, c_spacer = st.columns([1, 1, 4])
             
-             if c_ed1.button("🗑️ Quitar", key=f"del_muro_{m_id}"):
-                 conn = conectar_db()
-                 c = conn.cursor()
-                 c.execute("DELETE FROM MURO WHERE rowid = ?", (m_id,))
-                 conn.commit()
-                 conn.close()
-                 st.rerun()
+            if c_ed1.button("🗑️ Quitar", key=f"del_muro_{m_id}"):
+                conn = conectar_db()
+                c = conn.cursor()
+                c.execute("DELETE FROM MURO WHERE rowid = ?", (m_id,))
+                conn.commit()
+                conn.close()
+                st.rerun()
                 
-             if c_ed2.button("✏️ Editar", key=f"edit_muro_{m_id}"):
-                 st.session_state[f"editando_muro_{m_id}"] = True
+            if c_ed2.button("✏️ Editar", key=f"edit_muro_{m_id}"):
+                st.session_state[f"editando_muro_{m_id}"] = True
                  
-             if st.session_state.get(f"editando_muro_{m_id}", False):
-                 with st.container():    
-                     nuevo_texto = st.text_area("Corrige tu mensaje:", value=row['MENSAJE'], key=f"input_edit_{m_id}")
-                     col_save1, col_save2 = st.columns([1, 4])
+            if st.session_state.get(f"editando_muro_{m_id}", False):
+                with st.container():    
+                    nuevo_texto = st.text_area("Corrige tu mensaje:", value=row['MENSAJE'], key=f"input_edit_{m_id}")
+                    col_save1, col_save2 = st.columns([1, 4])
                      
-                     if col_save1.button("✅ Guardar", key=f"save_muro_{m_id}"):
-                         conn = conectar_db()
-                         c = conn.cursor()
-                         c.execute("UPDATE MURO SET MENSAJE = ? WHERE rowid = ?", (nuevo_texto, m_id))
-                         conn.commit()
-                         conn.close()
-                         st.session_state[f"editando_muro_{m_id}"] = False
-                         st.rerun()
+                    if col_save1.button("✅ Guardar", key=f"save_muro_{m_id}"):
+                        conn = conectar_db()
+                        c = conn.cursor()
+                        c.execute("UPDATE MURO SET MENSAJE = ? WHERE rowid = ?", (nuevo_texto, m_id))
+                        conn.commit()
+                        conn.close()
+                        st.session_state[f"editando_muro_{m_id}"] = False
+                        st.rerun()
                          
                     if col_save2.button("❌ Cancelar", key=f"cancel_muro_{m_id}"):
                         st.session_state[f"editando_muro_{m_id}"] = False
