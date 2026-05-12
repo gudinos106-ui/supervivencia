@@ -901,7 +901,7 @@ else:
             """, unsafe_allow_html=True)
 
             # 1. BOTÓN ELIMINAR
-            m_id = row.get('rowid', 0)
+            for i, fila in enumerate(items):
                 m_id       = fila[0] if len(fila) > 0 else 0
                 m_nombre   = fila[1] if len(fila) > 1 else "Sin nombre"
                 m_bodega   = fila[2] if len(fila) > 2 else "N/A"
