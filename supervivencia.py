@@ -887,6 +887,11 @@ else:
         for index, row in df_muro.iterrows():
             # Mantenemos tu diseño de burbuja elegante
             m_id = row.get('rowid', 0)
+            
+            fecha = row.get('FECHA', row.get('FECHA_REGISTRO', 'Sin fecha'))
+            autor = row.get('AUTOR', 'Usuario')
+            mensaje = row.get('MENSAJE', 'Sin mensaje')
+            
             st.markdown(f"""
                 <div style="background-color: rgba(255, 255, 255, 0.5); 
                             padding: 20px; 
