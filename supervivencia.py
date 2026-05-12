@@ -913,18 +913,20 @@ else:
     
                 with c1: st.write(row.get('PRODUCTO', '---'))
                 with c2: st.write(row.get('BODEGA', '---'))
-                # ... (pon aquí las otras columnas: vence, agota, estado) ...
-    
+                with c3: st.write(row.get('VENCE_EL', '---'))
+                with c4: st.write(row.get('SE_AGOTA', '---'))
+                with c5: st.write(row.get('ESTADO', '---'))
+                
                 with col_borrar:
                     # El botón DEBE tener una key única usando el ID del producto
                     m_id = row.get('rowid', index)
                     if st.button("🗑️", key=f"btn_borrar_{m_id}_{index}"):
-                            conn = conectar_db()  # <-- ESTA LÍNEA debe tener 4 espacios desde el 'if'
-                            c = conn.cursor()
-                            c.execute("DELETE FROM MURO WHERE rowid = ?", (m_id,))
-                            conn.commit()
-                            conn.close()
-                            st.rerun()
+                        conn = conectar_db()  # <-- ESTA LÍNEA debe tener 4 espacios desde el 'if'
+                        c = conn.cursor()
+                        c.execute("DELETE FROM MURO WHERE rowid = ?", (m_id,))
+                        conn.commit()
+                        conn.close()
+                        st.rerun()
 
 
     
