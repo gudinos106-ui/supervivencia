@@ -907,21 +907,28 @@ else:
             c_ed1, c_ed2, c_spacer = st.columns([1, 1, 4])
             
             # 1. BOTÓN ELIMINAR
-            for i, (m_id, m_nombre, m_bodega, m_vence, m_se_agota, m_estado) in enumerate(items):
-                conn = conectar_db()
-                c = conn.cursor()
-                c.execute("DELETE FROM MURO WHERE rowid = ?", (m_id,))
-                conn.commit()
-                conn.close()
-                st.rerun()
+            for i, fila in enumerate(items):
+                m_id       = fila[0]
+                m_nombre   = fila[1]
+                m_bodega   = fila[2]
+                m_vence    = fila[3]
+                m_se_agota = fila[4]
+                m_estado   = fila[5]
+                if c_ed1.button("🗑️ Quitar", key=f"del_{m_id}_{i}"):
+                    conn = conectar_db()
+                    c = conn.cursor()
+                    c.execute("DELETE FROM MURO WHERE rowid = ?", (m_id,))
+                    conn.commit()
+                    conn.close()
+                    st.rerun()
+        
+               # 2. BOTÓN EDITAR (Lógica simple)
+               if c_ed2.button("✏️ Editar", key=f"edit_{m_id}"):
+                   st.session_state[f"editando_{m_id}"] = True
 
-            # 2. BOTÓN EDITAR (Lógica simple)
-            if c_ed2.button("✏️ Editar", key=f"edit_{m_id}"):
-                st.session_state[f"editando_{m_id}"] = True
-
-            # Si el usuario le dio a editar, mostramos el campo para corregir
-            if st.session_state.get(f"editando_{m_id}", False):
-                nuevo_texto = st.text_area("Corrige tu mensaje:", value=row['MENSAJE'], key=f"txt_{m_id}")
+               # Si el usuario le dio a editar, mostramos el campo para corregir
+               if st.session_state.get(f"editando_{m_id}", False):
+                  nuevo_texto = st.text_area("Corrige tu mensaje:", value=row['MENSAJE'], key=f"txt_{m_id}")
                 if st.button("✅ Guardar Cambios", key=f"save_{m_id}"):
                     conn = conectar_db()
                     c = conn.cursor()
@@ -931,4 +938,4 @@ else:
                     st.session_state[f"editando_{m_id}"] = False
                     st.rerun()
             
-            st.markdown("<br>", unsafe_allow_html=True) # Espacio entre publicaciones
+                st.markdown("<br>", unsafe_allow_html=True) # Espacio entre publicaciones
