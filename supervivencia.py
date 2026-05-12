@@ -79,16 +79,18 @@ def apply_ultra_styles(image_file):
         /* ESTO CREA LA CAPA TRANSPARENTOSA DETRÁS DE LAS LETRAS */
         .block-container {{
           background-color: rgba(255, 255, 255, 0.70) !important; /* El 0.85 es la transparencia */
-          padding: 50px !important;
-          border-radius: 30px !important; /* Bordes redondeados para que se vea moderno */
+          padding: 2rem !important;
+          border-radius: 20px !important; /* Bordes redondeados para que se vea moderno */
           box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important; /* Una sombra externa para dar profundidad */
-          margin-top: 30px !important;
+          margin-top: 20px !important;
+          max-width: 95% !important;
         }}
 
         /* Reforzamos el color de la letra para que sea bien negro sobre el fondo claro */
         html, body, [class*="st-"], .stMarkdown p, label {{
-            font-size: 30px !important;
+            font-size: 18px !important;
             color: #000000 !important;
+            line-height: 1.4 !important;
         }}
     
         /* Ajuste para que los títulos resalten sobre la transparencia */
@@ -100,7 +102,7 @@ def apply_ultra_styles(image_file):
          
         /* FUERZA BRUTA PARA TEXTO GENERAL */
         html, body, [class*="st-"], .stMarkdown p, label {{
-            font-size: 30px !important;
+            font-size: 16px !important;
             line-height: 1.8 !important;
         }}
 
@@ -119,15 +121,15 @@ def apply_ultra_styles(image_file):
         
          /* MÉTRICAS (Los números grandes de "46 días") */
          [data-testid="stMetricValue"] {{
-             font-size: 100px !important;
-             font-weight: 900 !important;
+             font-size: 45px !important;
+             font-weight: 800 !important;
              color: #1f77b4 !important;    /* Un azul fuerte para que resalte */
              line-height: 2 !important;
          }}
          
         /* BOTONES */
         .stButton button p {{
-            font-size: 23px !important;
+            font-size: 18px !important;
             font-weight: bold !important;
         }}
 
@@ -137,8 +139,8 @@ def apply_ultra_styles(image_file):
         }}
         
         /* TÍTULOS */
-        h1 {{ font-size: 60px !important; }}
-        h3 {{ font-size: 40px !important; color: #1f77b4 !important; }}
+        h1 {{ font-size: 40px !important; }}
+        h3 {{ font-size: 25px !important; color: #1f77b4 !important; }}
 
         /* --- NUEVOS AJUSTES PARA COMPACTAR LA TABLA --- */
         
