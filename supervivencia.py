@@ -907,21 +907,7 @@ else:
                 m_bodega   = fila[2] if len(fila) > 2 else "N/A"
                 m_vence    = fila[3] if len(fila) > 3 else "N/A"
                 m_se_agota = fila[4] if len(fila) > 4 else "N/A"
-                m_estado   = fila[5] if len(fila) > 5 else "Normal"
-          
-                c_ed1, c_ed2, c_spacer = st.columns([1, 1, 4])
-               
-                if c_ed1.button("🗑️ Quitar", key=f"btn_del_{m_id}_{i}"):
-                    conn = conectar_db()
-                    c = conn.cursor()
-                    c.execute("DELETE FROM MURO WHERE rowid = ?", (m_id,))
-                    conn.commit()
-                    conn.close()
-                    st.rerun()
-        
-              # 2. BOTÓN EDITAR (Le agregamos la _{i} para que sea único)
-                if c_ed2.button("✏️ Editar", key=f"edit_{m_id}_{i}"):
-                    st.session_state[f"editando_{m_id}"] = True
+                m_estado   = fila[5] if len(fila) > 5 else "Normal
 
                # Si el usuario le dio a editar, mostramos el campo para corregir
                 if st.session_state.get(f"editando_{m_id}", False):
