@@ -901,14 +901,28 @@ else:
             """, unsafe_allow_html=True)
 
             # 1. BOTÓN ELIMINAR
-            for i, fila in enumerate(items):
-                m_id       = fila[0] if len(fila) > 0 else 0
+            m_id = row.get('rowid', 0)
                 m_nombre   = fila[1] if len(fila) > 1 else "Sin nombre"
                 m_bodega   = fila[2] if len(fila) > 2 else "N/A"
                 m_vence    = fila[3] if len(fila) > 3 else "N/A"
                 m_se_agota = fila[4] if len(fila) > 4 else "N/A"
                 m_estado   = fila[5] if len(fila) > 5 else "Normal
+          
+                c_ed1, c_ed2, c_spacer = st.columns([1, 1, 4])
 
+                # Quitamos el {i} y usamos solo el {m_id} porque ya es único
+                if c_ed1.button("🗑️ Quitar", key=f"btn_del_final_{m_id}"):
+                   conn = conectar_db()
+                   c = conn.cursor()
+                   c.execute("DELETE FROM MURO WHERE rowid = ?", (m_id,))
+                   conn.commit()
+                   conn.close()
+                   st.rerun()
+
+               # 2. BOTÓN EDITAR
+                if c_ed2.button("✏️ Editar", key=f"btn_edit_final_{m_id}"):
+                 st.session_state[f"editando_{m_id}"] = True
+                
                # Si el usuario le dio a editar, mostramos el campo para corregir
                 if st.session_state.get(f"editando_{m_id}", False):
                     nuevo_texto = st.text_area("Corrige tu mensaje:", value=row['MENSAJE'], key=f"txt_{m_id}")
