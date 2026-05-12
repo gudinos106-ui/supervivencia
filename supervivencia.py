@@ -914,6 +914,7 @@ else:
                 m_vence    = fila[3]
                 m_se_agota = fila[4]
                 m_estado   = fila[5]
+               
                 if c_ed1.button("🗑️ Quitar", key=f"del_{m_id}_{i}"):
                     conn = conectar_db()
                     c = conn.cursor()
@@ -928,14 +929,14 @@ else:
 
                # Si el usuario le dio a editar, mostramos el campo para corregir
                if st.session_state.get(f"editando_{m_id}", False):
-                  nuevo_texto = st.text_area("Corrige tu mensaje:", value=row['MENSAJE'], key=f"txt_{m_id}")
-                if st.button("✅ Guardar Cambios", key=f"save_{m_id}"):
-                    conn = conectar_db()
-                    c = conn.cursor()
-                    c.execute("UPDATE MURO SET MENSAJE = ? WHERE rowid = ?", (nuevo_texto, m_id))
-                    conn.commit()
-                    conn.close()
-                    st.session_state[f"editando_{m_id}"] = False
-                    st.rerun()
+                   nuevo_texto = st.text_area("Corrige tu mensaje:", value=row['MENSAJE'], key=f"txt_{m_id}")
+                   if st.button("✅ Guardar Cambios", key=f"save_{m_id}"):
+                      conn = conectar_db()
+                      c = conn.cursor()
+                      c.execute("UPDATE MURO SET MENSAJE = ? WHERE rowid = ?", (nuevo_texto, m_id))
+                      conn.commit()
+                      conn.close()
+                      st.session_state[f"editando_{m_id}"] = False
+                      st.rerun()
             
                 st.markdown("<br>", unsafe_allow_html=True) # Espacio entre publicaciones
