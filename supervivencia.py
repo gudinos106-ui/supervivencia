@@ -900,12 +900,8 @@ else:
                 </div>
             """, unsafe_allow_html=True)
 
-            # --- BOTONES DE GESTIÓN (Editar y Eliminar) ---
-            # Usamos el rowid que viene de tu SELECT *
-            m_id = row.get('rowid', 0) 
-            
             # 1. BOTÓN ELIMINAR
-            for i, fila in enumerate(items):
+            m_id = row.get('rowid', 0)
                 m_id       = fila[0] if len(fila) > 0 else 0
                 m_nombre   = fila[1] if len(fila) > 1 else "Sin nombre"
                 m_bodega   = fila[2] if len(fila) > 2 else "N/A"
@@ -915,7 +911,7 @@ else:
           
                 c_ed1, c_ed2, c_spacer = st.columns([1, 1, 4])
                
-                if c_ed1.button("🗑️ Quitar", key=f"inv_del_{m_id}_{i}"):
+                if c_ed1.button("🗑️ Quitar", key=f"btn_del_{m_id}_{i}"):
                     conn = conectar_db()
                     c = conn.cursor()
                     c.execute("DELETE FROM MURO WHERE rowid = ?", (m_id,))
