@@ -904,3 +904,23 @@ else:
                     <p style="font-size: 22px; margin-top: 10px;">{row.get('MENSAJE', 'Sin mensaje')}</p>
                 </div>
             """, unsafe_allow_html=True)
+           
+            m_id = row['rowid'] if 'rowid' in row else 0 
+            
+            c_ed1, c_ed2, c_spacer = st.columns([1, 1, 4])
+            # Si el usuario le dio a editar, mostramos el campo para corregir
+            if st.session_state.get(f"editando_{m_id}", False):
+                nuevo_texto = st.text_area("Corrige tu mensaje:", value=row['MENSAJE'], key=f"txt_{m_id}")
+                if st.button("✅ Guardar Cambios", key=f"save_{m_id}"):
+                    conn = conectar_db()
+                    c = conn.cursor()
+                    c.execute("UPDATE MURO SET MENSAJE = ? WHERE rowid = ?", (nuevo_texto, m_id))
+                    conn.commit()
+                    conn.close()
+                    st.session_state[f"editando_{m_id}"] = False
+                    st.rerun()
+            
+            st.markdown("<br>", unsafe_allow_html=True) # Espacio entre publicaciones
+
+
+    
