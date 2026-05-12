@@ -907,7 +907,7 @@ else:
             c_ed1, c_ed2, c_spacer = st.columns([1, 1, 4])
             
             # 1. BOTÓN ELIMINAR
-            if c_ed1.button("🗑️ Quitar", key=f"del_{m_id}"):
+            if c_ed1.button("🗑️ Quitar", key=f"del_{m_id}_{i}"):
                 conn = conectar_db()
                 c = conn.cursor()
                 c.execute("DELETE FROM MURO WHERE rowid = ?", (m_id,))
