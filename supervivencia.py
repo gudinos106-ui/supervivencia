@@ -141,19 +141,6 @@ def apply_ultra_styles(image_file):
         /* TÍTULOS */
         h1 {{ font-size: 40px !important; }}
         h3 {{ font-size: 25px !important; color: #1f77b4 !important; }}
-         st.markdown(f"""
-        <style>
-        {bg_style}
-    
-        /* ESTO CREA LA CAPA TRANSPARENTOSA DETRÁS DE LAS LETRAS */
-        .block-container {{
-        background-color: rgba(255, 255, 255, 0.70) !important;
-        padding: 2rem !important;  /* ESTO ESTÁ PERFECTO, DÉJALO ASÍ */
-        border-radius: 20px !important;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
-        margin-top: 20px !important;
-        max-width: 95% !important;
-        }}
 
         /* Reforzamos el color de la letra para que sea bien negro sobre el fondo claro */
         html, body, [class*="st-"], .stMarkdown p, label {{
