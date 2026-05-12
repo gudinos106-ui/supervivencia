@@ -224,9 +224,6 @@ def apply_ultra_styles(image_file):
             margin-bottom: 10px !important;
         }}
         
-        </style>
-        """, unsafe_allow_html=True)
-        
         /* 1. Reduce el espacio vertical entre las filas de la tabla */
         [data-testid="stHorizontalBlock"] {{
             gap: 0rem !important;
