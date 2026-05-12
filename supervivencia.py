@@ -901,7 +901,7 @@ else:
             """, unsafe_allow_html=True)
             # --- BOTONES DE GESTIÓN (Editar y Eliminar) ---
             # Usamos el rowid que viene de tu SELECT *
-            m_id = row['rowid'] 
+            m_id = row['rowid'] if 'rowid' in row else 0
             
             c_ed1, c_ed2, c_spacer = st.columns([1, 1, 4])
             
