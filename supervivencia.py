@@ -141,6 +141,105 @@ def apply_ultra_styles(image_file):
         /* TÍTULOS */
         h1 {{ font-size: 40px !important; }}
         h3 {{ font-size: 25px !important; color: #1f77b4 !important; }}
+         st.markdown(f"""
+        <style>
+        {bg_style}
+    
+        /* ESTO CREA LA CAPA TRANSPARENTOSA DETRÁS DE LAS LETRAS */
+        .block-container {{
+          background-color: rgba(255, 255, 255, 0.70) !important; /* El 0.85 es la transparencia */
+          padding: 2rem !important;
+          border-radius: 20px !important; /* Bordes redondeados para que se vea moderno */
+          box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important; /* Una sombra externa para dar profundidad */
+          margin-top: 20px !important;
+          max-width: 95% !important;
+        }}
+
+        /* Reforzamos el color de la letra para que sea bien negro sobre el fondo claro */
+        html, body, [class*="st-"], .stMarkdown p, label {{
+            font-size: 18px !important;
+            color: #000000 !important;
+            line-height: 1.4 !important;
+        }}
+    
+        /* Ajuste para que los títulos resalten sobre la transparencia */
+        h1, h3 {{
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 10px;
+        padding: 10px;
+         }}
+         
+        /* FUERZA BRUTA PARA TEXTO GENERAL */
+        html, body, [class*="st-"], .stMarkdown p, label {{
+            font-size: 16px !important;
+            line-height: 1.8 !important;
+        }}
+
+        /* ETIQUETAS DE FORMULARIO (MÁS GRANDES AÚN) */
+        .stWidgetLabel p {{
+            font-size: 28px !important;
+            font-weight: bold !important;
+            color: #000000 !important;
+        }}
+
+        /* PESTAÑAS (TABS) */
+        button[data-baseweb="tab"] p {{
+            font-size: 28px !important;
+            font-weight: 800 !important;
+        }}
+        
+         /* MÉTRICAS (Los números grandes de "46 días") */
+         [data-testid="stMetricValue"] {{
+             font-size: 45px !important;
+             font-weight: 800 !important;
+             color: #1f77b4 !important;    /* Un azul fuerte para que resalte */
+             line-height: 2 !important;
+         }}
+         
+        /* BOTONES */
+        .stButton button p {{
+            font-size: 18px !important;
+            font-weight: bold !important;
+        }}
+
+        /* TABLAS */
+        .stTable td, .stTable th {{
+            font-size: 24px !important;
+        }}
+        
+        /* TÍTULOS */
+        h1 {{ font-size: 40px !important; }}
+        h3 {{ font-size: 25px !important; color: #1f77b4 !important; }}
+
+        /* --- NUEVOS AJUSTES PARA COMPACTAR LA TABLA --- */
+        
+        /* 1. Reduce el espacio vertical entre las filas de la tabla */
+        [data-testid="stHorizontalBlock"] {{
+            gap: 0rem !important;
+            margin-bottom: -10px !important; /* Esto quita el ancho excesivo de arriba */
+        }}
+
+        /* 2. Hace que los textos de la tabla sean más compactos */
+        .stMarkdown p {{
+            font-size: 26px !important; /* Ajustamos un poco el tamaño letras para que no estire la celda */
+            line-height: 1.2 !important; /* Reduce el espacio entre líneas de texto */
+        }}
+
+        /* 3. Ajuste específico para que el buscador no sea tan gigante */
+        .stTextInput input {{
+            font-size: 30px !important;
+            padding: 15px !important;
+        }}
+
+        /* 4. Reduce el espacio del encabezado de la tabla */
+        h1, h2, h3, h4, h5, h6 {{
+            margin-top: 15px !important;
+            margin-bottom: 10px !important;
+        }}
+        
+        </style>
+        """, unsafe_allow_html=True)
+
 
         /* --- NUEVOS AJUSTES PARA COMPACTAR LA TABLA --- */
         
