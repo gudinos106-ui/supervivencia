@@ -907,18 +907,28 @@ else:
            
             m_id = row['rowid'] if 'rowid' in row else 0 
             
-            c_ed1, c_ed2, c_spacer = st.columns([1, 1, 4])
-            # Si el usuario le dio a editar, mostramos el campo para corregir
-            if st.session_state.get(f"editando_{m_id}", False):
-                nuevo_texto = st.text_area("Corrige tu mensaje:", value=row['MENSAJE'], key=f"txt_{m_id}")
-                if st.button("✅ Guardar Cambios", key=f"save_{m_id}"):
-                    conn = conectar_db()
-                    c = conn.cursor()
-                    c.execute("UPDATE MURO SET MENSAJE = ? WHERE rowid = ?", (nuevo_texto, m_id))
-                    conn.commit()
-                    conn.close()
-                    st.session_state[f"editando_{m_id}"] = False
-                    st.rerun()
+            for index, row in df_productos.iterrows():
+    # Creamos las columnas para cada fila de la tabla
+    # [3, 2, 2, 2, 2, 1] ajusta el ancho de cada dato
+    col_prod, col_bod, col_vence, col_agota, col_estado, col_borrar = st.columns([3, 2, 2, 2, 2, 1])
+    
+    with col_prod:
+        st.write(row['PRODUCTO'])
+    with col_bod:
+        st.write(row['BODEGA'])
+    # ... (pon aquí las otras columnas: vence, agota, estado) ...
+    
+    with col_borrar:
+        # El botón DEBE tener una key única usando el ID del producto
+        m_id = row.get('rowid', index)
+        if st.button("🗑️", key=f"del_prod_{m_id}"):
+            conn = conectar_db()
+            c = conn.cursor()
+            # Asegúrate de que la tabla sea la correcta (ej. INVENTARIO)
+            c.execute("DELETE FROM INVENTARIO WHERE rowid = ?", (m_id,))
+            conn.commit()
+            conn.close()
+            st.rerun()           
             
             st.markdown("<br>", unsafe_allow_html=True) # Espacio entre publicaciones
 
