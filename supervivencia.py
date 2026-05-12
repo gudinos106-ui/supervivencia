@@ -226,9 +226,6 @@ def apply_ultra_styles(image_file):
         
         </style>
         """, unsafe_allow_html=True)
-
-
-        /* --- NUEVOS AJUSTES PARA COMPACTAR LA TABLA --- */
         
         /* 1. Reduce el espacio vertical entre las filas de la tabla */
         [data-testid="stHorizontalBlock"] {{
