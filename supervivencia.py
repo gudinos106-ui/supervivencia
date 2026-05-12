@@ -904,16 +904,16 @@ else:
             # Usamos el rowid que viene de tu SELECT *
             m_id = row.get('rowid', 0) 
             
-            c_ed1, c_ed2, c_spacer = st.columns([1, 1, 4])
-            
             # 1. BOTÓN ELIMINAR
             for i, fila in enumerate(items):
-                m_id       = fila[0]
-                m_nombre   = fila[1]
-                m_bodega   = fila[2]
-                m_vence    = fila[3]
-                m_se_agota = fila[4]
-                m_estado   = fila[5]
+                m_id       = fila[0] if len(fila) > 0 else 0
+                m_nombre   = fila[1] if len(fila) > 1 else "Sin nombre"
+                m_bodega   = fila[2] if len(fila) > 2 else "N/A"
+                m_vence    = fila[3] if len(fila) > 3 else "N/A"
+                m_se_agota = fila[4] if len(fila) > 4 else "N/A"
+                m_estado   = fila[5] if len(fila) > 5 else "Normal"
+          
+                c_ed1, c_ed2, c_spacer = st.columns([1, 1, 4])
                
                 if c_ed1.button("🗑️ Quitar", key=f"del_{m_id}_{i}"):
                     conn = conectar_db()
