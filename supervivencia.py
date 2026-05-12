@@ -845,7 +845,7 @@ with tab_comunidad:
             if boton_publicar and nombre and mensaje:
                 conn = conectar_db()
                 c = conn.cursor()
-                c.execute("INSERT INTO MURO VALUES (?, ?, ?)", 
+                c.execute("INSERT INTO MURO (AUTOR, MENSAJE, FECHA) VALUES (?, ?, ?)", 
                           (nombre, mensaje, datetime.now().strftime('%d/%m/%Y %H:%M')))
                 conn.commit()
                 conn.close()
@@ -859,38 +859,12 @@ with tab_comunidad:
     conn = conectar_db()
     # MUY IMPORTANTE: Debes escribir 'rowid,' antes del asterisco '*'
     query = "SELECT rowid, * FROM MURO ORDER BY rowid DESC LIMIT 10"
-    # --- LECTURA SEGURA (Reemplaza tu bloque de df_muro con esto) ---
-try:
-    query = "SELECT * FROM INVENTARIO"
     df_muro = pd.read_sql_query(query, conn)
-except:
-    # Si la tabla está vacía o no existe, creamos un espacio seguro
-    df_muro = pd.DataFrame(columns=['PRODUCTO', 'CANTIDAD', 'FECHA_VENCIMIENTO', 'FECHA_REGISTRO'])
-
-# Si el DataFrame está vacío, le creamos las columnas para que no de error 'ESTADO'
-if df_muro.empty:
-    df_muro['ESTADO'] = []
-else:
-    # Aquí va tu lógica de los semáforos que ya tenías
-    def calcular_estado(row):
-        try:
-            cant = row['CANTIDAD']
-            if cant < 5: return "🔴 BAJO"
-            return "🟢 OK"
-        except:
-            return "⚠️ REVISAR"
-    
-    df_muro['ESTADO'] = df_muro.apply(calcular_estado, axis=1)
     conn.close()
-
+    
     if not df_muro.empty:
         for index, row in df_muro.iterrows():
-            # Mantenemos tu diseño de burbuja elegante
-            m_id = row.get('rowid', 0)
-            
-            fecha = row.get('FECHA', row.get('FECHA_REGISTRO', 'Sin fecha'))
-            autor = row.get('AUTOR', 'Usuario')
-            mensaje = row.get('MENSAJE', 'Sin mensaje')
+            m_id = row['rowid']
             
             st.markdown(f"""
                 <div style="background-color: rgba(255, 255, 255, 0.5); 
@@ -904,29 +878,36 @@ else:
                     <p style="font-size: 22px; margin-top: 10px;">{row.get('MENSAJE', 'Sin mensaje')}</p>
                 </div>
             """, unsafe_allow_html=True)
-           
-            m_id = row['rowid'] if 'rowid' in row else 0 
+
+             c_ed1, c_ed2, c_spacer = st.columns([1, 1, 4])
             
-            for index, row in df_muro.iterrows(): 
-                # Creamos las columnas para cada fila de la tabla
-                c1, c2, c3, c4, c5, c_borrar = st.columns([3, 2, 2, 2, 2, 1])
-    
-                with c1: st.write(row.get('PRODUCTO', '---'))
-                with c2: st.write(row.get('BODEGA', '---'))
-                with c3: st.write(row.get('VENCE_EL', '---'))
-                with c4: st.write(row.get('SE_AGOTA', '---'))
-                with c5: st.write(row.get('ESTADO', '---'))
+             if c_ed1.button("🗑️ Quitar", key=f"del_muro_{m_id}"):
+                 conn = conectar_db()
+                 c = conn.cursor()
+                 c.execute("DELETE FROM MURO WHERE rowid = ?", (m_id,))
+                 conn.commit()
+                 conn.close()
+                 st.rerun()
                 
-                with col_borrar:
-                    # El botón DEBE tener una key única usando el ID del producto
-                    m_id = row.get('rowid', index)
-                    if st.button("🗑️", key=f"btn_borrar_{m_id}_{index}"):
-                        conn = conectar_db()  # <-- ESTA LÍNEA debe tener 4 espacios desde el 'if'
-                        c = conn.cursor()
-                        c.execute("DELETE FROM MURO WHERE rowid = ?", (m_id,))
-                        conn.commit()
-                        conn.close()
+             if c_ed2.button("✏️ Editar", key=f"edit_muro_{m_id}"):
+                 st.session_state[f"editando_muro_{m_id}"] = True
+                 
+             if st.session_state.get(f"editando_muro_{m_id}", False):
+                 with st.container():    
+                     nuevo_texto = st.text_area("Corrige tu mensaje:", value=row['MENSAJE'], key=f"input_edit_{m_id}")
+                     col_save1, col_save2 = st.columns([1, 4])
+                     
+                     if col_save1.button("✅ Guardar", key=f"save_muro_{m_id}"):
+                         conn = conectar_db()
+                         c = conn.cursor()
+                         c.execute("UPDATE MURO SET MENSAJE = ? WHERE rowid = ?", (nuevo_texto, m_id))
+                         conn.commit()
+                         conn.close()
+                         st.session_state[f"editando_muro_{m_id}"] = False
+                         st.rerun()
+                         
+                    if col_save2.button("❌ Cancelar", key=f"cancel_muro_{m_id}"):
+                        st.session_state[f"editando_muro_{m_id}"] = False
                         st.rerun()
-
-
-    
+             
+            st.markdown("<br>", unsafe_allow_html=True)
