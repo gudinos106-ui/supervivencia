@@ -7,7 +7,7 @@ from fpdf import FPDF
 import urllib.parse
 
 # --- 1. CONFIGURACIÓN ---
-st.set_page_config(page_title="Seguridad Alimentaria", layout="wide")
+st.set_page_config(page_title="Seguridad Alimentaria", layout="centered")
 
 # --- 2. BASE DE DATOS Y FUNCIONES ---
 def conectar_db():
