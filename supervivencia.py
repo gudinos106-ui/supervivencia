@@ -907,28 +907,26 @@ else:
            
             m_id = row['rowid'] if 'rowid' in row else 0 
             
-            for index, row in df_productos.iterrows():
+            for index, row in df_muro.iterrows(): 
                 # Creamos las columnas para cada fila de la tabla
-                # [3, 2, 2, 2, 2, 1] ajusta el ancho de cada dato
-                col_prod, col_bod, col_vence, col_agota, col_estado, col_borrar = st.columns([3, 2, 2, 2, 2, 1])
+                c1, c2, c3, c4, c5, c_borrar = st.columns([3, 2, 2, 2, 2, 1])
     
-                with col_prod:
-                    st.write(row['PRODUCTO'])
-                with col_bod:
-                    st.write(row['BODEGA'])
+                with c1: st.write(row.get('PRODUCTO', '---'))
+                with c2: st.write(row.get('BODEGA', '---')))
                 # ... (pon aquí las otras columnas: vence, agota, estado) ...
     
                 with col_borrar:
                     # El botón DEBE tener una key única usando el ID del producto
                     m_id = row.get('rowid', index)
-                    if st.button("🗑️", key=f"del_prod_{m_id}"):
-                         conn = conectar_db()
-                         c = conn.cursor()
-                         # Asegúrate de que la tabla sea la correcta (ej. INVENTARIO)
-                         c.execute("DELETE FROM INVENTARIO WHERE rowid = ?", (m_id,))
-                         conn.commit()
-                         conn.close()
-                         st.rerun()           
+                    with c1: st.write(row.get('PRODUCTO', '---'))
+                    with c2: st.write(row.get('BODEGA', '---'))
+                        conn = conectar_db()
+                        c = conn.cursor()
+                        # Asegúrate de que la tabla sea la correcta (ej. INVENTARIO)
+                        c.execute("DELETE FROM INVENTARIO WHERE rowid = ?", (m_id,))
+                        conn.commit()
+                        conn.close()
+                        st.rerun()           
 
 
 
