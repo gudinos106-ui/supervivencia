@@ -912,7 +912,7 @@ else:
                 c1, c2, c3, c4, c5, c_borrar = st.columns([3, 2, 2, 2, 2, 1])
     
                 with c1: st.write(row.get('PRODUCTO', '---'))
-                with c2: st.write(row.get('BODEGA', '---')))
+                with c2: st.write(row.get('BODEGA', '---'))
                 # ... (pon aquí las otras columnas: vence, agota, estado) ...
     
                 with col_borrar:
