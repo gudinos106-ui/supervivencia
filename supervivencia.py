@@ -899,28 +899,28 @@ else:
                     st.markdown(f'<p style="font-size: 22px; margin-top: 10px;">{row.get("MENSAJE", "Sin mensaje")}</p>', unsafe_allow_html=True)
                 </div>
             """, unsafe_allow_html=True)
-
             # --- BOTONES DE GESTIÓN (Editar y Eliminar) ---
-            m_id = row.get('rowid', 0)
-          
+            # Usamos el rowid que viene de tu SELECT *
+            m_id = row['rowid'] 
+            
             c_ed1, c_ed2, c_spacer = st.columns([1, 1, 4])
             
-            if c_ed1.button("🗑️ Quitar", key=f"btn_del_final_{m_id}"):
+            # 1. BOTÓN ELIMINAR
+            if c_ed1.button("🗑️ Quitar", key=f"del_{m_id}"):
                 conn = conectar_db()
                 c = conn.cursor()
                 c.execute("DELETE FROM MURO WHERE rowid = ?", (m_id,))
                 conn.commit()
                 conn.close()
                 st.rerun()
-                
-               # 2. BOTÓN EDITAR
-            if c_ed2.button("✏️ Editar", key=f"btn_edit_final_{m_id}"):
+
+            # 2. BOTÓN EDITAR (Lógica simple)
+            if c_ed2.button("✏️ Editar", key=f"edit_{m_id}"):
                 st.session_state[f"editando_{m_id}"] = True
-                
+
+            # Si el usuario le dio a editar, mostramos el campo para corregir
             if st.session_state.get(f"editando_{m_id}", False):
-                # Usamos row.get para evitar errores si la columna cambia
-                mensaje_actual = row.get('MENSAJE', '')
-                nuevo_texto = st.text_area("Corrige tu mensaje:", value=mensaje_actual, key=f"txt_{m_id}")
+                nuevo_texto = st.text_area("Corrige tu mensaje:", value=row['MENSAJE'], key=f"txt_{m_id}")
                 if st.button("✅ Guardar Cambios", key=f"save_{m_id}"):
                     conn = conectar_db()
                     c = conn.cursor()
@@ -930,4 +930,4 @@ else:
                     st.session_state[f"editando_{m_id}"] = False
                     st.rerun()
             
-                st.markdown("<br>", unsafe_allow_html=True) # Espacio entre publicaciones
+            st.markdown("<br>", unsafe_allow_html=True) # Espacio entre publicaciones
