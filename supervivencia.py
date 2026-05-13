@@ -851,29 +851,3 @@ with tab_comunidad:
                 conn.close()
                 st.success("¡Tu mensaje ha sido publicado!")
                 st.rerun() # Refresca para ver el mensaje nuevo
-
-    st.markdown("---")
-    st.markdown("#### 💬 Publicaciones Recientes")
-
-    # --- LECTURA DEL MURO (Asegúrate de que esté así) ---
-    conn = conectar_db()
-    query = "SELECT rowid, * FROM MURO ORDER BY rowid DESC LIMIT 10"
-    df_muro = pd.read_sql_query(query, conn)
-    conn.close()
-
-    if not df_muro.empty:
-        for index, row in df_muro.iterrows():
-            m_id = row['rowid']
-            st.markdown(f"""
-                <div style="background-color: rgba(255, 255, 255, 0.5); 
-                           padding: 20px; 
-                           border-radius: 15px; 
-                           border-left: 8px solid #1f77b4; 
-                           margin-bottom: 5px;
-                           box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
-                   <small style="color: #555;">{row.get('FECHA', row.get('FECHA_REGISTRO', 'Sin fecha'))}
-                   <strong style="font-size: 24px; color: #1f77b4;">👤 {row.get('AUTOR', 'Usuario')} dice:</strong><br>
-                   <p style="font-size: 22px; margin-top: 10px;">{row.get('MENSAJE', 'Sin mensaje')}</p>
-               </div>
-           """, unsafe_allow_html=True)
-           
