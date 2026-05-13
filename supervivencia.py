@@ -72,7 +72,7 @@ def apply_ultra_styles(image_file):
     except:
         bg_style = ".stApp { background-color: #f4f7f6; }"
 
-   st.markdown(f"""
+    st.markdown(f"""
         <style>
         {bg_style}
     
