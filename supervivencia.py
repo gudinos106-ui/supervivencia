@@ -501,14 +501,8 @@ with tab_calculadora:
             dias_paz = int(cant_final / (cons_dia if cons_dia > 0 else 0.001))
             fecha_fin = (datetime.now() + timedelta(days=dias_paz)).strftime('%d/%m/%Y')
             
-            # 5. Dibujo de datos
-            c1.write(f"**{p_nombre}**")
-            c2.write(f"{cant_final} {u_txt}")
-            
             # 1. Recuperamos la fecha de vencimiento guardada (o 'N/A' si no hay)
             f_vence_str = row.get('FECHA_VENCIMIENTO', row.get('fecha_vencimiento', 'N/A'))
-            # 2. Mostramos los datos en las columnas correspondientes
-            c3.write(f"📅 {f_vence_str}")  # Fecha del empaque
 
             # 3. Lógica inteligente para la fecha de agotamiento
             if f_vence_str != 'N/A':
