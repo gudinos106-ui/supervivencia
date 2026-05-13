@@ -72,23 +72,41 @@ def apply_ultra_styles(image_file):
     except:
         bg_style = ".stApp { background-color: #f4f7f6; }"
 
-    st.markdown(f"""
+   st.markdown(f"""
         <style>
         {bg_style}
     
         /* ESTO CREA LA CAPA TRANSPARENTOSA DETRÁS DE LAS LETRAS */
         .block-container {{
           background-color: rgba(255, 255, 255, 0.70) !important; /* El 0.85 es la transparencia */
-          padding: 2rem !important;
+          padding: 2rem !important; 
           border-radius: 20px !important; /* Bordes redondeados para que se vea moderno */
           box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important; /* Una sombra externa para dar profundidad */
           margin-top: 20px !important;
           max-width: 95% !important;
         }}
 
+        /* 1. CAPA DE FONDO TRANSPARENTE */
+        .block-container {{
+            background-color: rgba(255, 255, 255, 0.70) !important;
+            padding: 1rem !important; 
+            border-radius: 20px !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+            margin-top: 10px !important;
+            max-width: 98% !important;
+       }}
+
+       /* 2. FORZAR COLUMNAS HORIZONTALES EN MÓVIL */
+       /* Esto evita que el Aceite y el Agua se estiren hacia abajo */
+       [data-testid="column"] {{
+           width: calc(16% - 5px) !important;
+           flex: 1 1 calc(16% - 5px) !important;
+           min-width: 45px !important; /* Permite que quepan las 6 columnas */
+       }}
+       
         /* Reforzamos el color de la letra para que sea bien negro sobre el fondo claro */
         html, body, [class*="st-"], .stMarkdown p, label {{
-            font-size: 18px !important;
+            font-size: 15px !important;
             color: #000000 !important;
             line-height: 1.4 !important;
         }}
