@@ -858,22 +858,12 @@ with tab_comunidad:
     # --- LECTURA DEL MURO (Asegúrate de que esté así) ---
     conn = conectar_db()
     query = "SELECT rowid, * FROM MURO ORDER BY rowid DESC LIMIT 10"
-    try:
-        df_muro = pd.read_sql_query(query, conn)
-    except Exception as e:
-        # Si falla por los nombres de columnas, intentamos una consulta básica
-        query = "SELECT rowid, * FROM MURO"
-        df_muro = pd.read_sql_query(query, conn)
+    df_muro = pd.read_sql_query(query, conn)
     conn.close()
 
     if not df_muro.empty:
         for index, row in df_muro.iterrows():
            m_id = row.get('rowid', index)
-           # Buscamos los datos sin importar si la columna se llama AUTOR o NOMBRE
-           autor = row.get('AUTOR', row.get('NOMBRE', 'Usuario'))
-           mensaje = row.get('MENSAJE', 'Sin mensaje')
-           fecha = row.get('FECHA', 'Sin fecha')
-            
            st.markdown(f"""
                <div style="background-color: rgba(255, 255, 255, 0.5); 
                            padding: 20px; 
