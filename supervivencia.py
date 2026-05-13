@@ -857,14 +857,22 @@ with tab_comunidad:
 
     # --- LECTURA DEL MURO (Asegúrate de que esté así) ---
     conn = conectar_db()
-    # MUY IMPORTANTE: Debes escribir 'rowid,' antes del asterisco '*'
     query = "SELECT rowid, * FROM MURO ORDER BY rowid DESC LIMIT 10"
-    df_muro = pd.read_sql_query(query, conn)
+    try:
+        df_muro = pd.read_sql_query(query, conn)
+    except Exception as e:
+        # Si falla por los nombres de columnas, intentamos una consulta básica
+        query = "SELECT rowid, * FROM MURO"
+        df_muro = pd.read_sql_query(query, conn)
     conn.close()
-    
+
     if not df_muro.empty:
         for index, row in df_muro.iterrows():
-            m_id = row['rowid']
+           m_id = row.get('rowid', index)
+           # Buscamos los datos sin importar si la columna se llama AUTOR o NOMBRE
+           autor = row.get('AUTOR', row.get('NOMBRE', 'Usuario'))
+           mensaje = row.get('MENSAJE', 'Sin mensaje')
+           fecha = row.get('FECHA', 'Sin fecha')
             
             st.markdown(f"""
                 <div style="background-color: rgba(255, 255, 255, 0.5); 
@@ -878,36 +886,3 @@ with tab_comunidad:
                     <p style="font-size: 22px; margin-top: 10px;">{row.get('MENSAJE', 'Sin mensaje')}</p>
                 </div>
             """, unsafe_allow_html=True)
-
-            c_ed1, c_ed2, c_spacer = st.columns([1, 1, 4])
-            
-            if c_ed1.button("🗑️ Quitar", key=f"del_muro_{m_id}"):
-                conn = conectar_db()
-                c = conn.cursor()
-                c.execute("DELETE FROM MURO WHERE rowid = ?", (m_id,))
-                conn.commit()
-                conn.close()
-                st.rerun()
-                
-            if c_ed2.button("✏️ Editar", key=f"edit_muro_{m_id}"):
-                st.session_state[f"editando_muro_{m_id}"] = True
-                 
-            if st.session_state.get(f"editando_muro_{m_id}", False):
-                with st.container():    
-                    nuevo_texto = st.text_area("Corrige tu mensaje:", value=row['MENSAJE'], key=f"input_edit_{m_id}")
-                    col_save1, col_save2 = st.columns([1, 4])
-                     
-                    if col_save1.button("✅ Guardar", key=f"save_muro_{m_id}"):
-                        conn = conectar_db()
-                        c = conn.cursor()
-                        c.execute("UPDATE MURO SET MENSAJE = ? WHERE rowid = ?", (nuevo_texto, m_id))
-                        conn.commit()
-                        conn.close()
-                        st.session_state[f"editando_muro_{m_id}"] = False
-                        st.rerun()
-                         
-                    if col_save2.button("❌ Cancelar", key=f"cancel_muro_{m_id}"):
-                        st.session_state[f"editando_muro_{m_id}"] = False
-                        st.rerun()
-             
-            st.markdown("<br>", unsafe_allow_html=True)
