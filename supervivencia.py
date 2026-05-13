@@ -531,9 +531,9 @@ with tab_calculadora:
                 tiempo_formateado = f"{dias_paz}d"
 
             # Semáforo actualizado
-            emoji = "🟢" if dias_paz > 15 else "🟡" if dias_paz > 7 else "🔴"
-            c5.write(f"{emoji} {tiempo_formateado}")
-            
+            tiempo_claro = f"{meses_paz}m y {dias_restantes}d"
+            emoji_estado = "🟢" if meses_paz > 3 else "🟡" # Ejemplo de lógica de color
+              
             # 6. Botón borrar (Borra por nombre para mantener la suma correcta)
             if c6.button("🗑️", key=f"btn_del_{index}_{p_nombre}"):
                 conn = conectar_db()
