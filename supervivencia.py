@@ -86,23 +86,54 @@ def apply_ultra_styles(image_file):
           max-width: 95% !important;
         }}
 
-        /* 1. CAPA DE FONDO TRANSPARENTE */
-        .block-container {{
-            background-color: rgba(255, 255, 255, 0.70) !important;
-            padding: 1rem !important; 
-            border-radius: 20px !important;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
-            margin-top: 10px !important;
-            max-width: 98% !important;
-       }}
+        /* 2. FORZAR COLUMNAS HORIZONTALES EN MÓVIL */
+        /* Esto evita que el Aceite y el Agua se estiren hacia abajo */
+        [data-testid="column"] {{
+            width: calc(16% - 5px) !important;
+            flex: 1 1 calc(16% - 5px) !important;
+            min-width: 45px !important; /* Permite que quepan las 6 columnas */
+        }}
 
-       /* 2. FORZAR COLUMNAS HORIZONTALES EN MÓVIL */
-       /* Esto evita que el Aceite y el Agua se estiren hacia abajo */
-       [data-testid="column"] {{
-           width: calc(16% - 5px) !important;
-           flex: 1 1 calc(16% - 5px) !important;
-           min-width: 45px !important; /* Permite que quepan las 6 columnas */
-       }}
+        /* 3. TEXTO COMPACTO PARA TABLAS */
+        /* Reducimos de 26px a 14px-16px para que quepa en el ancho del celular */
+        .stMarkdown p, label {{
+            font-size: 15px !important; 
+            color: #000000 !important;
+            line-height: 1.1 !important;
+            margin-bottom: 0px !important;
+        }}
+
+        /* 4. BUSCADOR MÁS PEQUEÑO */
+        .stTextInput input {{
+            font-size: 16px !important;
+            padding: 5px !important;
+        }}
+
+        /* 5. MÉTRICAS (Días de supervivencia) */
+        [data-testid="stMetricValue"] {{
+             font-size: 25px !important;
+             font-weight: 800 !important;
+             color: #1f77b4 !important;
+        }}
+
+        /* 6. PESTAÑAS (TABS) */
+        button[data-baseweb="tab"] p {{
+            font-size: 16px !important;
+            font-weight: bold !important;
+        }}
+
+        /* 7. BOTÓN DE BASURA COMPACTO */
+        .stButton button {{
+            padding: 0px !important;
+            height: 30px !important;
+            width: 30px !important;
+        }}
+
+         /* 8. QUITAR ESPACIOS SOBRANTES */
+         [data-testid="stHorizontalBlock"] {{
+             gap: 0.2rem !important;
+             margin-bottom: -5px !important;
+        }}
        
         /* Reforzamos el color de la letra para que sea bien negro sobre el fondo claro */
         html, body, [class*="st-"], .stMarkdown p, label {{
