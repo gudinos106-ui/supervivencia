@@ -100,7 +100,7 @@ def apply_ultra_styles(image_file):
 
        /* FUERZA BRUTA PARA TEXTO GENERAL */
        html, body, [class*="st-"], .stMarkdown p, label {{
-           font-size: 30px !important;
+           font-size: 25px !important;
            line-height: 1.8 !important;
        }}
 
@@ -112,12 +112,12 @@ def apply_ultra_styles(image_file):
        }}    
        /* PESTAÑAS (TABS) */
         button[data-baseweb="tab"] p {{
-            font-size: 28px !important;
+            font-size: 25px !important;
             font-weight: 800 !important;
        }}
        /* MÉTRICAS (Los números grandes de "46 días") */
        [data-testid="stMetricValue"] {{
-           font-size: 100px !important;
+           font-size: 80px !important;
            font-weight: 900 !important;
            color: #1f77b4 !important;    /* Un azul fuerte para que resalte */
            line-height: 2 !important;
@@ -131,12 +131,12 @@ def apply_ultra_styles(image_file):
 
       /* TABLAS */
       .stTable td, .stTable th {{
-          font-size: 24px !important;
+          font-size: 20px !important;
        }}
        
        /* TÍTULOS */
-       h1 {{ font-size: 20px !important; }}
-       h3 {{ font-size: 30px !important; color: #1f77b4 !important; }}
+       h1 {{ font-size: 30px !important; }}
+       h3 {{ font-size: 20px !important; color: #1f77b4 !important; }}
        
        /* --- MODO CELULAR --- */
        @media (max-width: 640px) {{
@@ -151,7 +151,7 @@ def apply_ultra_styles(image_file):
        }}
             h1 {{ font-size: 30px !important; }}
             h3 {{ font-size: 25px !important; }}
-            [data-testid="stMetricValue"] {{ font-size: 45px !important; }}
+            [data-testid="stMetricValue"] {{ font-size: 35px !important; }}
             button[data-baseweb="tab"] p {{ font-size: 20px !important; }}
        }}
        /* 5. DISEÑO DE ENCABEZADOS DE TABLA */
