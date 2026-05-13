@@ -86,38 +86,41 @@ def apply_ultra_styles(image_file):
           max-width: 95% !important;
         }}
 
-        /* 2. EL TRUCO MÁGICO: Si la pantalla es pequeña (Celular) */
-        @media (max-width: 640px) {{
-            /* Bajamos el tamaño de letra de todo lo que se ve encimado */
-            .stMarkdown p, label, .stText {{
-               font-size: 14px !important; 
-               line-height: 1.2 !important; 
+        /* 2. EL "FIJADOR DE FILAS" PARA EL CELULAR */
+        /* Esto obliga a que c1, c2, c3, etc., se queden en la misma línea */
+        [data-testid="stHorizontalBlock"] {{
+            display: flex !important;
+            flex-direction: row !important; /* Fuerza la línea horizontal */
+            flex-wrap: nowrap !important;   /* Prohíbe que se bajen las columnas */
+            align-items: center !important;
+            gap: 2px !important;            /* Espacio mínimo entre datos */
         }}
 
-        /* Achicamos los títulos de la tabla (PRODUCTO, BODEGA, etc) */
-            h1, h2, h3 {{
-                font-size: 18px !important;
-        }}
-
-        /* Forzamos a que las columnas no se amontonen */
+        /* 3. TAMAÑO DE LAS COLUMNAS EN EL CELULAR */
         [data-testid="column"] {{
-            width: calc(16% - 2px) !important;
-            flex: 1 1 calc(16% - 2px) !important;
-            min-width: 40px !important;
-            padding: 0px !important;
+            flex: 1 1 auto !important;
+            width: auto !important;
+            min-width: 0px !important; /* Permite que se encojan para caber */
         }}
 
-        /* Ajustamos el botón de borrar para que no ocupe tanto espacio */
-        .stButton button {{
-            padding: 0px !important;
-            width: 25px !important;
-            height: 25px !important;
+        /* 4. LETRA PEQUEÑA PARA QUE TODO QUEPA */
+        @media (max-width: 640px) {{
+            .stMarkdown p, label, stText {{
+                font-size: 11px !important; /* Letra bien pequeña para el móvil */
+                white-space: nowrap !important; /* Evita que las palabras se rompan */
+                overflow: hidden;
+                text-overflow: ellipsis; /* Si no cabe, pone ... */
         }}
 
-        /* 3. AJUSTES PARA COMPUTADORA (Pantallas grandes) */
-        @media (min-width: 641px) {{
-            .stMarkdown p, label {{
-                font-size: 18px !important;
+        /* Achicamos los iconos para ganar espacio */
+        .stMarkdown img {{
+            width: 15px !important;
+        }}
+
+        /* 5. DISEÑO DE LOS ENCABEZADOS (PRODUCTO, BODEGA...) */
+        .stMarkdown h3, .stMarkdown strong {{
+            font-size: 12px !important;
+            color: #1f77b4 !important;
         }}
         /* Ajuste para las métricas */
         [data-testid="stMetricValue"] {{
