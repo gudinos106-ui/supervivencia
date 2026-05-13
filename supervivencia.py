@@ -79,11 +79,10 @@ def apply_ultra_styles(image_file):
         /* ESTO CREA LA CAPA TRANSPARENTOSA DETRÁS DE LAS LETRAS */
         .block-container {{
           background-color: rgba(255, 255, 255, 0.70) !important; /* El 0.85 es la transparencia */
-          padding: 2rem !important; 
+          padding: 1.5rem !important; 
           border-radius: 20px !important; /* Bordes redondeados para que se vea moderno */
           box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important; /* Una sombra externa para dar profundidad */
-          margin-top: 20px !important;
-          max-width: 95% !important;
+          margin: auto;
         }}
 
         /* 2. EL "FIJADOR DE FILAS" PARA EL CELULAR */
@@ -93,14 +92,7 @@ def apply_ultra_styles(image_file):
             flex-direction: row !important; /* Fuerza la línea horizontal */
             flex-wrap: nowrap !important;   /* Prohíbe que se bajen las columnas */
             align-items: center !important;
-            gap: 1px !important;            /* Espacio mínimo entre datos */
-        }}
-
-        /* 3. TAMAÑO DE LAS COLUMNAS EN EL CELULAR */
-        [data-testid="column"] {{
-            flex: 1 1 auto !important;
-            width: auto !important;
-            min-width: 0px !important; /* Permite que se encojan para caber */
+            gap: 00.1px !important;            /* Espacio mínimo entre datos */
         }}
         
         [data-testid="column"] {{
@@ -127,13 +119,6 @@ def apply_ultra_styles(image_file):
             h3 {{ font-size: 18px !important; }}
             [data-testid="stMetricValue"] {{ font-size: 25px !important; }}
             button[data-baseweb="tab"] p {{ font-size: 14px !important; }}
-       }}
-
-       /* --- MODO COMPUTADORA --- */
-       @media (min-width: 641px) {{
-            .stMarkdown p, label {{
-                font-size: 18px !important; /* Letra cómoda para leer */
-                line-height: 1.4 !important;
        }}
             h1 {{ font-size: 40px !important; }}
             h3 {{ font-size: 25px !important; }}
