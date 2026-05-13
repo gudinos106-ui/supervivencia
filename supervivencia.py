@@ -86,34 +86,42 @@ def apply_ultra_styles(image_file):
           max-width: 95% !important;
         }}
 
-        /* 2. FORZAR COLUMNAS HORIZONTALES EN MÓVIL */
-        /* Esto evita que el Aceite y el Agua se estiren hacia abajo */
+        /* 2. EL TRUCO MÁGICO: Si la pantalla es pequeña (Celular) */
+        @media (max-width: 640px) {{
+            /* Bajamos el tamaño de letra de todo lo que se ve encimado */
+            .stMarkdown p, label, .stText {{
+               font-size: 14px !important; 
+               line-height: 1.2 !important; 
+        }}
+
+        /* Achicamos los títulos de la tabla (PRODUCTO, BODEGA, etc) */
+            h1, h2, h3 {{
+                font-size: 18px !important;
+        }}
+
+        /* Forzamos a que las columnas no se amontonen */
         [data-testid="column"] {{
-            width: calc(16% - 5px) !important;
-            flex: 1 1 calc(16% - 5px) !important;
-            min-width: 45px !important; /* Permite que quepan las 6 columnas */
+            width: calc(16% - 2px) !important;
+            flex: 1 1 calc(16% - 2px) !important;
+            min-width: 40px !important;
+            padding: 0px !important;
         }}
 
-        /* 3. TEXTO COMPACTO PARA TABLAS */
-        /* Reducimos de 26px a 14px-16px para que quepa en el ancho del celular */
-        .stMarkdown p, label {{
-            font-size: 15px !important; 
-            color: #000000 !important;
-            line-height: 1.1 !important;
-            margin-bottom: 0px !important;
+        /* Ajustamos el botón de borrar para que no ocupe tanto espacio */
+        .stButton button {{
+            padding: 0px !important;
+            width: 25px !important;
+            height: 25px !important;
         }}
 
-        /* 4. BUSCADOR MÁS PEQUEÑO */
-        .stTextInput input {{
-            font-size: 16px !important;
-            padding: 5px !important;
+        /* 3. AJUSTES PARA COMPUTADORA (Pantallas grandes) */
+        @media (min-width: 641px) {{
+            .stMarkdown p, label {{
+                font-size: 18px !important;
         }}
-
-        /* 5. MÉTRICAS (Días de supervivencia) */
+        /* Ajuste para las métricas */
         [data-testid="stMetricValue"] {{
-             font-size: 25px !important;
-             font-weight: 800 !important;
-             color: #1f77b4 !important;
+            font-size: 22px !important;
         }}
 
         /* 6. PESTAÑAS (TABS) */
@@ -121,7 +129,6 @@ def apply_ultra_styles(image_file):
             font-size: 16px !important;
             font-weight: bold !important;
         }}
-
         /* 7. BOTÓN DE BASURA COMPACTO */
         .stButton button {{
             padding: 0px !important;
