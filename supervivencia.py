@@ -112,37 +112,17 @@ def apply_ultra_styles(image_file):
                 text-overflow: ellipsis; /* Si no cabe, pone ... */
         }}
 
-        /* Achicamos los iconos para ganar espacio */
-        .stMarkdown img {{
-            width: 15px !important;
-        }}
-
         /* 5. DISEÑO DE LOS ENCABEZADOS (PRODUCTO, BODEGA...) */
         .stMarkdown h3, .stMarkdown strong {{
-            font-size: 12px !important;
+            font-size: 10px !important;
             color: #1f77b4 !important;
-        }}
-        /* Ajuste para las métricas */
-        [data-testid="stMetricValue"] {{
-            font-size: 22px !important;
         }}
 
         /* 6. PESTAÑAS (TABS) */
         button[data-baseweb="tab"] p {{
             font-size: 16px !important;
             font-weight: bold !important;
-        }}
-        /* 7. BOTÓN DE BASURA COMPACTO */
-        .stButton button {{
-            padding: 0px !important;
-            height: 30px !important;
-            width: 30px !important;
-        }}
 
-         /* 8. QUITAR ESPACIOS SOBRANTES */
-         [data-testid="stHorizontalBlock"] {{
-             gap: 0.2rem !important;
-             margin-bottom: -5px !important;
         }}
        
         /* Reforzamos el color de la letra para que sea bien negro sobre el fondo claro */
@@ -267,19 +247,19 @@ def apply_ultra_styles(image_file):
 
         /* 2. Hace que los textos de la tabla sean más compactos */
         .stMarkdown p {{
-            font-size: 26px !important; /* Ajustamos un poco el tamaño letras para que no estire la celda */
+            font-size: 20px !important; /* Ajustamos un poco el tamaño letras para que no estire la celda */
             line-height: 1.2 !important; /* Reduce el espacio entre líneas de texto */
         }}
 
         /* 3. Ajuste específico para que el buscador no sea tan gigante */
         .stTextInput input {{
-            font-size: 30px !important;
+            font-size: 20px !important;
             padding: 15px !important;
         }}
 
         /* 4. Reduce el espacio del encabezado de la tabla */
         h1, h2, h3, h4, h5, h6 {{
-            margin-top: 15px !important;
+            margin-top: 10px !important;
             margin-bottom: 10px !important;
         }}
         
@@ -297,14 +277,9 @@ def apply_ultra_styles(image_file):
 
         /* 3. Ajuste específico para que el buscador no sea tan gigante */
         .stTextInput input {{
-            font-size: 30px !important;
+            font-size: 20px !important;
             padding: 15px !important;
-        }}
 
-        /* 4. Reduce el espacio del encabezado de la tabla */
-        h1, h2, h3, h4, h5, h6 {{
-            margin-top: 15px !important;
-            margin-bottom: 10px !important;
         }}
         
         </style>
