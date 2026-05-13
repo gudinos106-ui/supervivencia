@@ -863,9 +863,9 @@ with tab_comunidad:
 
     if not df_muro.empty:
         for index, row in df_muro.iterrows():
-           m_id = row.get('rowid', index)
-           st.markdown(f"""
-               <div style="background-color: rgba(255, 255, 255, 0.5); 
+            m_id = row['rowid']
+            st.markdown(f"""
+                <div style="background-color: rgba(255, 255, 255, 0.5); 
                            padding: 20px; 
                            border-radius: 15px; 
                            border-left: 8px solid #1f77b4; 
@@ -876,3 +876,4 @@ with tab_comunidad:
                    <p style="font-size: 22px; margin-top: 10px;">{row.get('MENSAJE', 'Sin mensaje')}</p>
                </div>
            """, unsafe_allow_html=True)
+           
