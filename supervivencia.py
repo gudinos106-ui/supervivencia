@@ -471,13 +471,14 @@ with tab_calculadora:
             
             st.markdown(f"""
                 <div style="display: flex; flex-direction: row; align-items: center; 
-                            background-color: rgba(255,255,255,0.4); padding: 5px; 
-                            border-radius: 8px; margin-bottom: 4px; gap: 4px; border: 1px solid rgba(0,0,0,0.1);">
-                    <div style="flex: 2.5; font-size: 12px; font-weight: bold; color: black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{p_nombre}</div>
-                    <div style="flex: 1.5; font-size: 11px; color: black;">{row.get('BODEGA', '---')}</div>
-                    <div style="flex: 2; font-size: 10px; color: black;">📅{row.get('VENCE_EL', '---')}</div>
-                    <div style="flex: 2; font-size: 10px; color: black;">⏳{row.get('SE_AGOTA', '---')}</div>
-                    <div style="flex: 2; font-size: 10px; color: black;">🟢{row.get('ESTADO', '---')}</div>
+                            background-color: rgba(255,255,255,0.6); padding: 12px; 
+                            border-radius: 10px; margin-bottom: 8px; gap: 10px; border: 1px solid rgba(31, 119, 180, 0.3);">
+                            box-shadow: 1px 1px 3px rgba(0,0,0,0.05);">
+                    <div style="flex: 2.5; font-size: 16px; font-weight: bold; color: black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{p_nombre}</div>
+                    <div style="flex: 1.5; font-size: 15px; color: black;">{row.get('BODEGA', '---')}</div>
+                    <div style="flex: 2; font-size: 15px; color: black;">📅{row.get('VENCE_EL', '---')}</div>
+                    <div style="flex: 2; font-size: 15px; color: black;">⏳{row.get('SE_AGOTA', '---')}</div>
+                    <div style="flex: 2; font-size: 15px; color: black;">🟢{row.get('ESTADO', '---')}</div>
                 </div>
             """, unsafe_allow_html=True)
                   
