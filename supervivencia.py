@@ -535,7 +535,7 @@ with tab_calculadora:
             emoji_estado = "🟢" if meses_paz > 3 else "🟡" # Ejemplo de lógica de color
               
             # 6. Botón borrar (Borra por nombre para mantener la suma correcta)
-            if c6.button("🗑️", key=f"btn_del_{index}_{p_nombre}"):
+            if st.button("🗑️ Eliminar Producto", key=f"btn_del_{index}_{m_id}"):
                 conn = conectar_db()
                 c = conn.cursor()
                 c.execute("DELETE FROM INVENTARIO WHERE PRODUCTO = ?", (row['PRODUCTO'],))
