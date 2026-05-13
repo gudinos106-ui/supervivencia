@@ -102,158 +102,62 @@ def apply_ultra_styles(image_file):
             width: auto !important;
             min-width: 0px !important; /* Permite que se encojan para caber */
         }}
+        
+        [data-testid="column"] {{
+            flex: 1 1 auto !important;
+            width: auto !important;
+            min-width: 0px !important;
+       }}
 
-        /* 6. PESTAÑAS (TABS) */
-        button[data-baseweb="tab"] p {{
-            font-size: 16px !important;
-            font-weight: bold !important;
-
-        }}
-       
-        /* Reforzamos el color de la letra para que sea bien negro sobre el fondo claro */
-        html, body, [class*="st-"], .stMarkdown p, label {{
-            font-size: 15px !important;
+       /* 3. TEXTOS GENERALES (Equilibrio para que no se vea feo) */
+       html, body, .stMarkdown p, label {{
             color: #000000 !important;
-            line-height: 1.4 !important;
-        }}
+            font-family: 'sans-serif';
+       }}
+
+       /* 4. AJUSTES ESPECÍFICOS POR PANTALLA (RESPONSIVO) */
     
-        /* Ajuste para que los títulos resalten sobre la transparencia */
-        h1, h3 {{
-        background-color: rgba(255, 255, 255, 0.7);
-        border-radius: 10px;
-        padding: 10px;
-         }}
-         
-        /* FUERZA BRUTA PARA TEXTO GENERAL */
-        html, body, [class*="st-"], .stMarkdown p, label {{
-            font-size: 16px !important;
-            line-height: 1.8 !important;
-        }}
+       /* --- MODO CELULAR --- */
+       @media (max-width: 640px) {{
+           .stMarkdown p, label {{
+               font-size: 12px !important; /* Letra pequeña para que quepa el cuadro */
+               line-height: 1.1 !important;
+       }}
+            h1 {{ font-size: 24px !important; }}
+            h3 {{ font-size: 18px !important; }}
+            [data-testid="stMetricValue"] {{ font-size: 25px !important; }}
+            button[data-baseweb="tab"] p {{ font-size: 14px !important; }}
+       }}
 
-        /* ETIQUETAS DE FORMULARIO (MÁS GRANDES AÚN) */
-        .stWidgetLabel p {{
-            font-size: 28px !important;
-            font-weight: bold !important;
-            color: #000000 !important;
-        }}
+       /* --- MODO COMPUTADORA --- */
+       @media (min-width: 641px) {{
+            .stMarkdown p, label {{
+                font-size: 18px !important; /* Letra cómoda para leer */
+                line-height: 1.4 !important;
+       }}
+            h1 {{ font-size: 40px !important; }}
+            h3 {{ font-size: 25px !important; }}
+            [data-testid="stMetricValue"] {{ font-size: 45px !important; }}
+            button[data-baseweb="tab"] p {{ font-size: 20px !important; }}
+       }}
+       /* 5. DISEÑO DE ENCABEZADOS DE TABLA */
+        .stMarkdown h3, .stMarkdown strong {{
+            color: #1f77b4 !important;
+       }}
 
-        /* PESTAÑAS (TABS) */
-        button[data-baseweb="tab"] p {{
-            font-size: 28px !important;
-            font-weight: 800 !important;
-        }}
-        
-         /* MÉTRICAS (Los números grandes de "46 días") */
-         [data-testid="stMetricValue"] {{
-             font-size: 45px !important;
-             font-weight: 800 !important;
-             color: #1f77b4 !important;    /* Un azul fuerte para que resalte */
-             line-height: 2 !important;
-         }}
-         
-        /* BOTONES */
-        .stButton button p {{
-            font-size: 18px !important;
-            font-weight: bold !important;
-        }}
-
-        /* Reforzamos el color de la letra para que sea bien negro sobre el fondo claro */
-        html, body, [class*="st-"], .stMarkdown p, label {{
-            font-size: 18px !important;
-            color: #000000 !important;
-            line-height: 1.4 !important;
-        }}
+       /* 6. BUSCADOR Y BOTONES COMPACTOS */
+       .stTextInput input {{
+           font-size: 16px !important;
+           padding: 8px !important;
+       }}
     
-        /* Ajuste para que los títulos resalten sobre la transparencia */
-        h1, h3 {{
-        background-color: rgba(255, 255, 255, 0.7);
-        border-radius: 10px;
-        padding: 10px;
-         }}
+       .stButton button {{
+           padding: 0px 5px !important;
+           border-radius: 5px !important;
+       }}
          
-        /* FUERZA BRUTA PARA TEXTO GENERAL */
-        html, body, [class*="st-"], .stMarkdown p, label {{
-            font-size: 16px !important;
-            line-height: 1.8 !important;
-        }}
-
-        /* ETIQUETAS DE FORMULARIO (MÁS GRANDES AÚN) */
-        .stWidgetLabel p {{
-            font-size: 28px !important;
-            font-weight: bold !important;
-            color: #000000 !important;
-        }}
-
-        /* PESTAÑAS (TABS) */
-        button[data-baseweb="tab"] p {{
-            font-size: 28px !important;
-            font-weight: 800 !important;
-        }}
-        
-         /* MÉTRICAS (Los números grandes de "46 días") */
-         [data-testid="stMetricValue"] {{
-             font-size: 45px !important;
-             font-weight: 800 !important;
-             color: #1f77b4 !important;    /* Un azul fuerte para que resalte */
-             line-height: 2 !important;
-         }}
-         
-        /* BOTONES */
-        .stButton button p {{
-            font-size: 23px !important;
-            font-weight: bold !important;
-        }}
-
-        /* TABLAS */
-        .stTable td, .stTable th {{
-            font-size: 24px !important;
-        }}
-        
-        /* TÍTULOS */
-        h1 {{ font-size: 40px !important; }}
-        h3 {{ font-size: 25px !important; color: #1f77b4 !important; }}
-
-        /* --- NUEVOS AJUSTES PARA COMPACTAR LA TABLA --- */
-        
-        /* 1. Reduce el espacio vertical entre las filas de la tabla */
-        [data-testid="stHorizontalBlock"] {{
-            gap: 0rem !important;
-            margin-bottom: -10px !important; /* Esto quita el ancho excesivo de arriba */
-        }}
-
-        /* 2. Hace que los textos de la tabla sean más compactos */
-        .stMarkdown p {{
-            font-size: 20px !important; /* Ajustamos un poco el tamaño letras para que no estire la celda */
-            line-height: 1.2 !important; /* Reduce el espacio entre líneas de texto */
-        }}
-
-        /* 4. Reduce el espacio del encabezado de la tabla */
-        h1, h2, h3, h4, h5, h6 {{
-            margin-top: 10px !important;
-            margin-bottom: 10px !important;
-        }}
-        
-        /* 1. Reduce el espacio vertical entre las filas de la tabla */
-        [data-testid="stHorizontalBlock"] {{
-            gap: 0rem !important;
-            margin-bottom: -10px !important; /* Esto quita el ancho excesivo de arriba */
-        }}
-
-        /* 2. Hace que los textos de la tabla sean más compactos */
-        .stMarkdown p {{
-            font-size: 26px !important; /* Ajustamos un poco el tamaño letras para que no estire la celda */
-            line-height: 1.2 !important; /* Reduce el espacio entre líneas de texto */
-        }}
-
-        /* 3. Ajuste específico para que el buscador no sea tan gigante */
-        .stTextInput input {{
-            font-size: 20px !important;
-            padding: 15px !important;
-
-        }}
-        
-        </style>
-        """, unsafe_allow_html=True)
+       </style>
+  """, unsafe_allow_html=True)
 
 # --- 4. DATOS MAESTROS (CORREGIDOS CON UNIDADES) ---
 # Asegúrate de que est_maestro tenga este formato de 3 datos:
