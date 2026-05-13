@@ -93,7 +93,7 @@ def apply_ultra_styles(image_file):
             flex-direction: row !important; /* Fuerza la línea horizontal */
             flex-wrap: nowrap !important;   /* Prohíbe que se bajen las columnas */
             align-items: center !important;
-            gap: 2px !important;            /* Espacio mínimo entre datos */
+            gap: 1px !important;            /* Espacio mínimo entre datos */
         }}
 
         /* 3. TAMAÑO DE LAS COLUMNAS EN EL CELULAR */
@@ -101,21 +101,6 @@ def apply_ultra_styles(image_file):
             flex: 1 1 auto !important;
             width: auto !important;
             min-width: 0px !important; /* Permite que se encojan para caber */
-        }}
-
-        /* 4. LETRA PEQUEÑA PARA QUE TODO QUEPA */
-        @media (max-width: 640px) {{
-            .stMarkdown p, label, stText {{
-                font-size: 11px !important; /* Letra bien pequeña para el móvil */
-                white-space: nowrap !important; /* Evita que las palabras se rompan */
-                overflow: hidden;
-                text-overflow: ellipsis; /* Si no cabe, pone ... */
-        }}
-
-        /* 5. DISEÑO DE LOS ENCABEZADOS (PRODUCTO, BODEGA...) */
-        .stMarkdown h3, .stMarkdown strong {{
-            font-size: 10px !important;
-            color: #1f77b4 !important;
         }}
 
         /* 6. PESTAÑAS (TABS) */
@@ -172,15 +157,6 @@ def apply_ultra_styles(image_file):
             font-weight: bold !important;
         }}
 
-        /* TABLAS */
-        .stTable td, .stTable th {{
-            font-size: 24px !important;
-        }}
-        
-        /* TÍTULOS */
-        h1 {{ font-size: 40px !important; }}
-        h3 {{ font-size: 25px !important; color: #1f77b4 !important; }}
-
         /* Reforzamos el color de la letra para que sea bien negro sobre el fondo claro */
         html, body, [class*="st-"], .stMarkdown p, label {{
             font-size: 18px !important;
@@ -224,7 +200,7 @@ def apply_ultra_styles(image_file):
          
         /* BOTONES */
         .stButton button p {{
-            font-size: 18px !important;
+            font-size: 23px !important;
             font-weight: bold !important;
         }}
 
@@ -249,12 +225,6 @@ def apply_ultra_styles(image_file):
         .stMarkdown p {{
             font-size: 20px !important; /* Ajustamos un poco el tamaño letras para que no estire la celda */
             line-height: 1.2 !important; /* Reduce el espacio entre líneas de texto */
-        }}
-
-        /* 3. Ajuste específico para que el buscador no sea tan gigante */
-        .stTextInput input {{
-            font-size: 20px !important;
-            padding: 15px !important;
         }}
 
         /* 4. Reduce el espacio del encabezado de la tabla */
