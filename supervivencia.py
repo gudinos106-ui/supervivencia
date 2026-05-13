@@ -874,15 +874,15 @@ with tab_comunidad:
            mensaje = row.get('MENSAJE', 'Sin mensaje')
            fecha = row.get('FECHA', 'Sin fecha')
             
-            st.markdown(f"""
-                <div style="background-color: rgba(255, 255, 255, 0.5); 
-                            padding: 20px; 
-                            border-radius: 15px; 
-                            border-left: 8px solid #1f77b4; 
-                            margin-bottom: 5px;
-                            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
-                    <small style="color: #555;">{row.get('FECHA', row.get('FECHA_REGISTRO', 'Sin fecha'))}
-                    <strong style="font-size: 24px; color: #1f77b4;">👤 {row.get('AUTOR', 'Usuario')} dice:</strong><br>
-                    <p style="font-size: 22px; margin-top: 10px;">{row.get('MENSAJE', 'Sin mensaje')}</p>
-                </div>
-            """, unsafe_allow_html=True)
+           st.markdown(f"""
+               <div style="background-color: rgba(255, 255, 255, 0.5); 
+                           padding: 20px; 
+                           border-radius: 15px; 
+                           border-left: 8px solid #1f77b4; 
+                           margin-bottom: 5px;
+                           box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
+                   <small style="color: #555;">{row.get('FECHA', row.get('FECHA_REGISTRO', 'Sin fecha'))}
+                   <strong style="font-size: 24px; color: #1f77b4;">👤 {row.get('AUTOR', 'Usuario')} dice:</strong><br>
+                   <p style="font-size: 22px; margin-top: 10px;">{row.get('MENSAJE', 'Sin mensaje')}</p>
+               </div>
+           """, unsafe_allow_html=True)
