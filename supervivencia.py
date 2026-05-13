@@ -512,14 +512,14 @@ with tab_calculadora:
                     dt_fin = datetime.strptime(fecha_fin, '%Y-%m-%d')
         
                     # Si se acaba después de vencerse, ponemos un aviso
-                    if dt_fin > dt_vence:
-                       c4.write(f"⚠️ {dt_fin.strftime('%d/%m/%Y')}") 
+                    if fecha_fin != 'N/A':
+                       texto_fecha_fin = f"⚠️ {dt_fin.strftime('%d/%m/%Y')}" 
                     else:
-                        c4.write(f"⏳ {dt_fin.strftime('%d/%m/%Y')}")
+                        texto_fecha_fin = f"⏳ {dt_fin.strftime('%d/%m/%Y')}"
                 except:
-                    c4.write(f"⏳ {fecha_fin}")
+                    texto_fecha_fin = f"⏳ {fecha_fin}"
             else:
-                c4.write(f"⏳ {fecha_fin}")
+                texto_fecha_fin = f"⏳ {fecha_fin}"
             
             # --- CÁLCULO DE TIEMPO CLARO (Idea de tu hija) ---
             meses_paz = dias_paz // 30
