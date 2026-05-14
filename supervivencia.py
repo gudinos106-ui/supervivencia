@@ -136,7 +136,7 @@ def apply_ultra_styles(image_file):
        
        /* TÍTULOS */
        h1 {{ font-size: 30px !important; }}
-       h3 {{ font-size: 20px !important; color: #1f77b4 !important; }}
+       h3 {{ font-size: 20px !important; color: #99ff99 !important; }}
        
        /* --- MODO CELULAR --- */
        @media (max-width: 640px) {{
