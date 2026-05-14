@@ -515,7 +515,7 @@ with tab_calculadora:
                        c4.write(f"⚠️ {dt_fin.strftime('%d/%m/%Y')}") 
                     else:
                         c4.write(f"⏳ {dt_fin.strftime('%d/%m/%Y')}")
-                 except:
+                except:
                     c4.write(f"⏳ {fecha_fin}")
             else:
                 c4.write(f"⏳ {fecha_fin}")
