@@ -511,7 +511,7 @@ with tab_calculadora:
                     dt_fin = datetime.strptime(fecha_fin, '%Y-%m-%d')
         
                     # Si se acaba después de vencerse, ponemos un aviso
-                     if dt_fin > dt_vence:
+                    if dt_fin > dt_vence:
                        c4.write(f"⚠️ {dt_fin.strftime('%d/%m/%Y')}") 
                     else:
                         c4.write(f"⏳ {dt_fin.strftime('%d/%m/%Y')}")
