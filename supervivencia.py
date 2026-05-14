@@ -79,17 +79,25 @@ def apply_ultra_styles(image_file):
         /* ESTO CREA LA CAPA TRANSPARENTOSA DETRÁS DE LAS LETRAS */
         .block-container {{
           background-color: rgba(255, 255, 255, 0.70) !important; /* El 0.85 es la transparencia */
-          padding: 1rem !important; 
-          border-radius: 15px !important; /* Bordes redondeados para que se vea moderno */
+          padding: 50px !important; 
+          border-radius: 30px !important; /* Bordes redondeados para que se vea moderno */
           box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important; /* Una sombra externa para dar profundidad */
           margin: auto;
         }}
 
         /* 2. TEXTO BASE: Tamaño equilibrado (Ni 30px ni 10px) */
         html, body, [class*="st-"], .stMarkdown p, label {{
-            font-size: 18px !important; /* Tamaño estándar legible */
+            font-size: 30px !important; /* Tamaño estándar legible */
             color: #000000 !important;
             line-height: 1.4 !important;
+        }}
+
+        /* Ajuste para que los títulos resalten sobre la transparencia */
+        h1, h3 {{
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 10px;
+        padding: 10px;
+
         }}
         
         /* 3. ENCABEZADOS DE TABLA: Para que no se peguen */
@@ -104,7 +112,7 @@ def apply_ultra_styles(image_file):
 
        /* FUERZA BRUTA PARA TEXTO GENERAL */
        html, body, [class*="st-"], .stMarkdown p, label {{
-           font-size: 25px !important;
+           font-size: 30px !important;
            line-height: 1.8 !important;
        }}
 
@@ -116,13 +124,13 @@ def apply_ultra_styles(image_file):
        }}    
        /* PESTAÑAS (TABS) */
         button[data-baseweb="tab"] p {{
-            font-size: 25px !important;
+            font-size: 28px !important;
             font-weight: 800 !important;
        }}
        /* MÉTRICAS (Los números grandes de "46 días") */
        [data-testid="stMetricValue"] {{
-           font-size: 40px !important;
-           font-weight: 800 !important;
+           font-size: 100px !important;
+           font-weight: 900 !important;
            color: #2e7d32 !important;    /* Un verde mas oscuro para que resalte */
            line-height: 1 !important;
        }}
@@ -135,12 +143,12 @@ def apply_ultra_styles(image_file):
 
       /* TABLAS */
       .stTable td, .stTable th {{
-          font-size: 10px !important;
+          font-size: 24px !important;
        }}
        
        /* TÍTULOS */
-       h1 {{ font-size: 40px !important; }}
-       h3 {{ font-size: 30px !important; color: #99ff99 !important; }}
+       h1 {{ font-size: 60px !important; }}
+       h3 {{ font-size: 40px !important; color: #99ff99 !important; }}
        
        /* --- MODO CELULAR --- */
        @media (max-width: 640px) {{
