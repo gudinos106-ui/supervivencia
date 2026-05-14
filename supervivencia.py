@@ -464,23 +464,13 @@ with tab_calculadora:
         h6.write("**BORRAR**")
         st.markdown("---")
 
-        # --- 5. EL BUCLE DE LA TABLA ---
+       # --- 5. EL BUCLE DE LA TABLA ---
         for index, row in df_mostrar.iterrows():
-            m_id = row.get('rowid', index)
+            # IMPORTANTE: Usamos los mismos pesos que los encabezados para que todo aline
+            c1, c2, c3, c4, c5, c6 = st.columns(pesos_tabla) 
+
             p_nombre = str(row['PRODUCTO']).strip().title()
-            
-            st.markdown(f"""
-                <div style="display: flex; flex-direction: row; align-items: center; 
-                            background-color: rgba(255,255,255,0.95); padding: 12px; 
-                            border-radius: 12px; margin-bottom: 8px; gap: 10px; border: 2px solid rgba(31, 119, 180, 0.3);">
-                    <div style="flex: 2; font-size: 18px; font-weight: bold; color: black; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{p_nombre}</div>
-                    <div style="flex: 1.5; font-size: 16px; color: black;">{row.get('BODEGA', '---')}</div>
-                    <div style="flex: 2; font-size: 15px; color: black;">{row.get('VENCE_EL', '---')}</div>
-                    <div style="flex: 2; font-size: 15px; color: black;">{row.get('SE_AGOTA', '---')}</div>
-                    <div style="flex: 2; font-size: 15px; color: black;">{row.get('ESTADO', '---')}</div>
-                </div>
-            """, unsafe_allow_html=True)
-                  
+              
          # 1. Buscamos en el maestro con respaldo de seguridad
             datos_m = est_maestro.get(p_nombre, [50, "g", "Otros"])
             dosis = datos_m[0]
