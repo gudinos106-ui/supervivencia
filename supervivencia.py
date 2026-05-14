@@ -70,7 +70,7 @@ def apply_ultra_styles(image_file):
             }}
             """
     except:
-        bg_style = ".stApp { background-color: #f4f7f6; }"
+        bg_style = ".stApp { background-color: #99ff99; }"
 
     st.markdown(f"""
         <style>
@@ -79,23 +79,27 @@ def apply_ultra_styles(image_file):
         /* ESTO CREA LA CAPA TRANSPARENTOSA DETRÁS DE LAS LETRAS */
         .block-container {{
           background-color: rgba(255, 255, 255, 0.70) !important; /* El 0.85 es la transparencia */
-          padding: 1.5rem !important; 
-          border-radius: 20px !important; /* Bordes redondeados para que se vea moderno */
+          padding: 1rem !important; 
+          border-radius: 15px !important; /* Bordes redondeados para que se vea moderno */
           box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important; /* Una sombra externa para dar profundidad */
           margin: auto;
         }}
 
-        /* Reforzamos el color de la letra para que sea bien negro sobre el fondo claro */
+        /* 2. TEXTO BASE: Tamaño equilibrado (Ni 30px ni 10px) */
         html, body, [class*="st-"], .stMarkdown p, label {{
-            font-size: 30px !important;
+            font-size: 18px !important; /* Tamaño estándar legible */
             color: #000000 !important;
+            line-height: 1.4 !important;
         }}
         
-        /* Ajuste para que los títulos resalten sobre la transparencia */
-        h1, h3 {{
-        background-color: rgba(255, 255, 255, 0.7);
-        border-radius: 10px;
-        padding: 10px;
+        /* 3. ENCABEZADOS DE TABLA: Para que no se peguen */
+        .stMarkdown h3 {{
+            color: #1f77b4 !important;
+            font-size: 20px !important;
+            margin-bottom: 20px !important;
+            display: flex;
+            justify-content: space-between;
+            
        }}
 
        /* FUERZA BRUTA PARA TEXTO GENERAL */
@@ -117,10 +121,10 @@ def apply_ultra_styles(image_file):
        }}
        /* MÉTRICAS (Los números grandes de "46 días") */
        [data-testid="stMetricValue"] {{
-           font-size: 80px !important;
-           font-weight: 900 !important;
-           color: #99ff99 !important;    /* Un verde pastel para que resalte */
-           line-height: 2 !important;
+           font-size: 40px !important;
+           font-weight: 800 !important;
+           color: #2e7d32 !important;    /* Un verde mas oscuro para que resalte */
+           line-height: 1 !important;
        }}
          
         /* BOTONES */
