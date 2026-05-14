@@ -494,6 +494,15 @@ with tab_calculadora:
             # 1. Recuperamos la fecha de vencimiento guardada (o 'N/A' si no hay)
             f_vence_str = row.get('FECHA_VENCIMIENTO', row.get('fecha_vencimiento', 'N/A'))
 
+             # 5. Dibujo de datos
+            c1.write(f"**{p_nombre}**")
+            c2.write(f"{cant_final} {u_txt}")
+            
+            # 1. Recuperamos la fecha de vencimiento guardada (o 'N/A' si no hay)
+            f_vence_str = row.get('FECHA_VENCIMIENTO', row.get('fecha_vencimiento', 'N/A'))
+            # 2. Mostramos los datos en las columnas correspondientes
+            c3.write(f"📅 {f_vence_str}")  # Fecha del empaque
+
             # 3. Lógica inteligente para la fecha de agotamiento
             if f_vence_str != 'N/A':
                 try:
@@ -502,14 +511,14 @@ with tab_calculadora:
                     dt_fin = datetime.strptime(fecha_fin, '%Y-%m-%d')
         
                     # Si se acaba después de vencerse, ponemos un aviso
-                    if fecha_fin != 'N/A':
-                       texto_fecha_fin = f"⚠️ {dt_fin.strftime('%d/%m/%Y')}" 
+                     if dt_fin > dt_vence:
+                       c4.write(f"⚠️ {dt_fin.strftime('%d/%m/%Y')}") 
                     else:
-                        texto_fecha_fin = f"⏳ {dt_fin.strftime('%d/%m/%Y')}"
-                except:
-                    texto_fecha_fin = f"⏳ {fecha_fin}"
+                        c4.write(f"⏳ {dt_fin.strftime('%d/%m/%Y')}")
+                 except:
+                    c4.write(f"⏳ {fecha_fin}")
             else:
-                texto_fecha_fin = f"⏳ {fecha_fin}"
+                c4.write(f"⏳ {fecha_fin}")
             
             # --- CÁLCULO DE TIEMPO CLARO (Idea de tu hija) ---
             meses_paz = dias_paz // 30
@@ -521,8 +530,8 @@ with tab_calculadora:
                 tiempo_formateado = f"{dias_paz}d"
 
             # Semáforo actualizado
-            tiempo_claro = f"{meses_paz}m y {dias_restantes}d"
-            emoji_estado = "🟢" if meses_paz > 3 else "🟡" # Ejemplo de lógica de color
+            emoji = "🟢" if dias_paz > 15 else "🟡" if dias_paz > 7 else "🔴"
+            c5.write(f"{emoji} {tiempo_formateado}")
               
             # 6. Botón borrar (Borra por nombre para mantener la suma correcta)
             if st.button("🗑️ ", key=f"btn_del_{index}_{p_nombre}"):
