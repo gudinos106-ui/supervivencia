@@ -119,7 +119,7 @@ def apply_ultra_styles(image_file):
        [data-testid="stMetricValue"] {{
            font-size: 80px !important;
            font-weight: 900 !important;
-           color: #1f77b4 !important;    /* Un azul fuerte para que resalte */
+           color: #99ff99 !important;    /* Un verde pastel para que resalte */
            line-height: 2 !important;
        }}
          
