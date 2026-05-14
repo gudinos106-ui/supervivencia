@@ -148,16 +148,37 @@ def apply_ultra_styles(image_file):
             h3 {{ font-size: 18px !important; }}
             [data-testid="stMetricValue"] {{ font-size: 25px !important; }}
             button[data-baseweb="tab"] p {{ font-size: 14px !important; }}
-       }}
-            h1 {{ font-size: 30px !important; }}
-            h3 {{ font-size: 25px !important; }}
-            [data-testid="stMetricValue"] {{ font-size: 35px !important; }}
-            button[data-baseweb="tab"] p {{ font-size: 20px !important; }}
+       
        }}
        /* 5. DISEÑO DE ENCABEZADOS DE TABLA */
         .stMarkdown h3, .stMarkdown strong {{
             color: #1f77b4 !important;
+     
        }}
+
+       /* 1. Reduce el espacio vertical entre las filas de la tabla */
+       [data-testid="stHorizontalBlock"] {{
+           gap: 0rem !important;
+           margin-bottom: -10px !important; /* Esto quita el ancho excesivo de arriba */
+       }}
+       
+       /* 2. Hace que los textos de la tabla sean más compactos */
+       .stMarkdown p {{
+           font-size: 26px !important; /* Ajustamos un poco el tamaño letras para que no estire la celda */
+           line-height: 1.2 !important; /* Reduce el espacio entre líneas de texto */
+       }}
+
+       /* 3. Ajuste específico para que el buscador no sea tan gigante */
+       .stTextInput input {{
+           font-size: 30px !important;
+           padding: 15px !important;
+       }}   
+           
+       /* 4. Reduce el espacio del encabezado de la tabla */
+        h1, h2, h3, h4, h5, h6 {{
+            margin-top: 15px !important;
+            margin-bottom: 10px !important;
+       }}   
 
        /* 6. BUSCADOR Y BOTONES COMPACTOS */
        .stTextInput input {{
@@ -171,7 +192,7 @@ def apply_ultra_styles(image_file):
        }}
          
        </style>
-  """, unsafe_allow_html=True)
+       """, unsafe_allow_html=True)
 
 # --- 4. DATOS MAESTROS (CORREGIDOS CON UNIDADES) ---
 # Asegúrate de que est_maestro tenga este formato de 3 datos:
