@@ -135,12 +135,12 @@ def apply_ultra_styles(image_file):
 
       /* TABLAS */
       .stTable td, .stTable th {{
-          font-size: 20px !important;
+          font-size: 10px !important;
        }}
        
        /* TÍTULOS */
-       h1 {{ font-size: 30px !important; }}
-       h3 {{ font-size: 20px !important; color: #99ff99 !important; }}
+       h1 {{ font-size: 40px !important; }}
+       h3 {{ font-size: 30px !important; color: #99ff99 !important; }}
        
        /* --- MODO CELULAR --- */
        @media (max-width: 640px) {{
@@ -148,8 +148,8 @@ def apply_ultra_styles(image_file):
                font-size: 10px !important; /* Letra pequeña para que quepa el cuadro */
                line-height: 1.1 !important;
        }}
-            h1 {{ font-size: 24px !important; }}
-            h3 {{ font-size: 18px !important; }}
+            h1 {{ font-size: 30px !important; }}
+            h3 {{ font-size: 24px !important; }}
             [data-testid="stMetricValue"] {{ font-size: 25px !important; }}
             button[data-baseweb="tab"] p {{ font-size: 14px !important; }}
        
@@ -168,8 +168,8 @@ def apply_ultra_styles(image_file):
        
        /* 2. Hace que los textos de la tabla sean más compactos */
        .stMarkdown p {{
-           font-size: 26px !important; /* Ajustamos un poco el tamaño letras para que no estire la celda */
-           line-height: 1.2 !important; /* Reduce el espacio entre líneas de texto */
+           font-size: 20px !important; /* Ajustamos un poco el tamaño letras para que no estire la celda */
+           line-height: 1 !important; /* Reduce el espacio entre líneas de texto */
        }}
 
        /* 3. Ajuste específico para que el buscador no sea tan gigante */
