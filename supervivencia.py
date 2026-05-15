@@ -140,7 +140,7 @@ def apply_ultra_styles(image_file):
        }}
        
        /* TÍTULOS */
-       h1 {{ font-size: 30px !important; }}
+       h1 {{ font-size: 40px !important; }}
        h3 {{ font-size: 40px !important; color: #1f77b4 !important; }}
        
        /* --- MODO CELULAR --- */
@@ -152,7 +152,7 @@ def apply_ultra_styles(image_file):
                
        /* Tamaño para los títulos de los campos (como 'Cuantas personas...') */
        label {{
-           font-size: 18px !important;
+           font-size: 30px !important;
            font-weight: bold !important;
            color: #2c3e50 !important;
        }}
