@@ -292,7 +292,6 @@ st.markdown('<div class="section-header"><h3>📋 Calculadora de Alimentos</h3><
 tab_calculadora, tab_emergencia, tab_comunidad = st.tabs([
     "🏠 MI DESPENSA",  
     "🚨 KIT DE EMERGENCIA",
-    "🤝 COMUNIDAD"
 ])
     #tabla de calculadora
 with tab_calculadora:
@@ -510,12 +509,12 @@ with tab_calculadora:
 
              # 5. Dibujo de datos
             c1.write(f"**{p_nombre}**")
-            c2.write(f"{cant_final} {u_txt}")
+            c2.write(f"📥Cantidad {cant_final} {u_txt}")
             
             # 1. Recuperamos la fecha de vencimiento guardada (o 'N/A' si no hay)
             f_vence_str = row.get('FECHA_VENCIMIENTO', row.get('fecha_vencimiento', 'N/A'))
             # 2. Mostramos los datos en las columnas correspondientes
-            c3.write(f"📅 {f_vence_str}")  # Fecha del empaque
+            c3.write(f"📅Vence {f_vence_str}")  # Fecha del empaque
 
             # 3. Lógica inteligente para la fecha de agotamiento
             if f_vence_str != 'N/A':
@@ -528,11 +527,11 @@ with tab_calculadora:
                     if dt_fin > dt_vence:
                        c4.write(f"⚠️ {dt_fin.strftime('%d/%m/%Y')}") 
                     else:
-                        c4.write(f"⏳ {dt_fin.strftime('%d/%m/%Y')}")
+                        c4.write(f"⏳Disponible {dt_fin.strftime('%d/%m/%Y')}")
                 except:
-                    c4.write(f"⏳ {fecha_fin}")
+                    c4.write(f"⏳Disponible {fecha_fin}")
             else:
-                c4.write(f"⏳ {fecha_fin}")
+                c4.write(f"⏳Disponible {fecha_fin}")
             
             # --- CÁLCULO DE TIEMPO CLARO (Idea de tu hija) ---
             meses_paz = dias_paz // 30
@@ -548,7 +547,7 @@ with tab_calculadora:
             c5.write(f"{emoji} {tiempo_formateado}")
               
             # 6. Botón borrar (Borra por nombre para mantener la suma correcta)
-            if st.button("🗑️ ", key=f"btn_del_{index}_{p_nombre}"):
+            if st.button("🗑️ Eliminar", key=f"btn_del_{index}_{p_nombre}"):
                 conn = conectar_db()
                 c = conn.cursor()
                 c.execute("DELETE FROM INVENTARIO WHERE PRODUCTO = ?", (row['PRODUCTO'],))
@@ -768,25 +767,3 @@ with tab_emergencia:
             # Aquí iría tu código de FPDF usando la lista 'faltantes'
             st.info(f"Generando lista para {len(faltantes)} artículos pendientes...")
             # (El código del PDF se mantiene igual, solo que ahora 'faltantes' ya trae los números calculados)
-
-#tabla de comunidad        
-with tab_comunidad:
-    st.markdown("### 🤝 Muro de Intercambio Vecinal")
-    st.write("¡Pura Vida! Si te sobra algo o necesitas algo, publícalo aquí para que tus vecinos lo vean.")
-
-    # --- FORMULARIO PARA PUBLICAR ---
-    with st.expander("📝 Publicar un anuncio (Trueque)"):
-        with st.form("nuevo_post"):
-            nombre = st.text_input("Tu nombre/apodo")
-            mensaje = st.text_area("¿Qué ofreces o qué buscas? (Ej: Doña Anabel: Tengo harina por vencer, ¿quién cambia?)")
-            boton_publicar = st.form_submit_button("Publicar en el muro")
-            
-            if boton_publicar and nombre and mensaje:
-                conn = conectar_db()
-                c = conn.cursor()
-                c.execute("INSERT INTO MURO (AUTOR, MENSAJE, FECHA) VALUES (?, ?, ?)", 
-                          (nombre, mensaje, datetime.now().strftime('%d/%m/%Y %H:%M')))
-                conn.commit()
-                conn.close()
-                st.success("¡Tu mensaje ha sido publicado!")
-                st.rerun() # Refresca para ver el mensaje nuevo
