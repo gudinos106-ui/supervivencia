@@ -70,7 +70,7 @@ def apply_ultra_styles(image_file):
             }}
             """
     except:
-        bg_style = ".stApp { background-color: #99ff99; }"
+        bg_style = ".stApp { background-color: #f4f7f6; }"
 
     st.markdown(f"""
         <style>
@@ -82,14 +82,7 @@ def apply_ultra_styles(image_file):
           padding: 50px !important; 
           border-radius: 30px !important; /* Bordes redondeados para que se vea moderno */
           box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important; /* Una sombra externa para dar profundidad */
-          margin: auto;
-        }}
-
-        /* 2. TEXTO BASE: Tamaño equilibrado (Ni 30px ni 10px) */
-        html, body, [class*="st-"], .stMarkdown p, label {{
-            font-size: 30px !important; /* Tamaño estándar legible */
-            color: #000000 !important;
-            line-height: 1.4 !important;
+          margin-top: 30px !important;
         }}
 
         /* Ajuste para que los títulos resalten sobre la transparencia */
@@ -131,8 +124,8 @@ def apply_ultra_styles(image_file):
        [data-testid="stMetricValue"] {{
            font-size: 100px !important;
            font-weight: 900 !important;
-           color: #2e7d32 !important;    /* Un verde mas oscuro para que resalte */
-           line-height: 1 !important;
+           color: #1f77b4 !important;    /* Un azul fuerte para que resalte */
+           line-height: 2 !important;
        }}
          
         /* BOTONES */
@@ -147,8 +140,8 @@ def apply_ultra_styles(image_file):
        }}
        
        /* TÍTULOS */
-       h1 {{ font-size: 60px !important; }}
-       h3 {{ font-size: 40px !important; color: #99ff99 !important; }}
+       h1 {{ font-size: 30px !important; }}
+       h3 {{ font-size: 40px !important; color: #1f77b4 !important; }}
        
        /* --- MODO CELULAR --- */
        @media (max-width: 640px) {{
@@ -176,8 +169,8 @@ def apply_ultra_styles(image_file):
        
        /* 2. Hace que los textos de la tabla sean más compactos */
        .stMarkdown p {{
-           font-size: 20px !important; /* Ajustamos un poco el tamaño letras para que no estire la celda */
-           line-height: 1 !important; /* Reduce el espacio entre líneas de texto */
+           font-size: 26px !important; /* Ajustamos un poco el tamaño letras para que no estire la celda */
+           line-height: 1.2 !important; /* Reduce el espacio entre líneas de texto */
        }}
 
        /* 3. Ajuste específico para que el buscador no sea tan gigante */
@@ -190,12 +183,6 @@ def apply_ultra_styles(image_file):
         h1, h2, h3, h4, h5, h6 {{
             margin-top: 15px !important;
             margin-bottom: 10px !important;
-       }}   
-
-       /* 6. BUSCADOR Y BOTONES COMPACTOS */
-       .stTextInput input {{
-           font-size: 16px !important;
-           padding: 8px !important;
        }}
     
        .stButton button {{
