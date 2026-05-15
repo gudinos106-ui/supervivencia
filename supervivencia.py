@@ -11,7 +11,7 @@ st.set_page_config(
     page_title="Seguridad Alimentaria", 
     page_icon="https://raw.githubusercontent.com/gudinos106-ui/supervivencia/refs/heads/main/supervi.png",
     layout="centered"
-
+)
 st.markdown(
     f"""
     <link rel="manifest" href="https://raw.githubusercontent.com/gudinos106-ui/supervivencia/refs/heads/main/manifest.json">
