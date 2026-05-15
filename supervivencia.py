@@ -464,19 +464,6 @@ with tab_calculadora:
         else:
             df_mostrar = df_db
 
-     # 3. ENCABEZADOS: Van FUERA del else para que se vean siempre
-        st.markdown("---")
-        pesos_tabla = [1, 1, 1, 1, 1, 1]
-
-        h1, h2, h3, h4, h5, h6 = st.columns(pesos_tabla)
-        h1.write("**PRODUCTO**")
-        h2.write("**BODEGA**")
-        h3.write("**VENCE EL**")
-        h4.write("**SE AGOTA**")
-        h5.write("**ESTADO**")
-        h6.write("**BORRAR**")
-        st.markdown("---")
-
        # --- 5. EL BUCLE DE LA TABLA ---
         for index, row in df_mostrar.iterrows():
             # IMPORTANTE: Usamos los mismos pesos que los encabezados para que todo aline
