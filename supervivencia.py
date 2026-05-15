@@ -9,6 +9,25 @@ import urllib.parse
 # --- 1. CONFIGURACIÓN ---
 st.set_page_config(page_title="Seguridad Alimentaria", layout="centered")
 
+st.markdown(
+    f"""
+    <link rel="manifest" href="https://raw.githubusercontent.com/gudinos106-ui/supervivencia/refs/heads/main/manifest.json">
+    <script>
+    if ('serviceWorker' in navigator) {{
+      window.addEventListener('load', function() {{
+        navigator.serviceWorker.register('https://raw.githubusercontent.com/gudinos106-ui/supervivencia/refs/heads/main/sw.js')
+        .then(function(registration) {{
+          console.log('SW registrado con éxito');
+        }}, function(err) {{
+          console.log('Fallo en SW: ', err);
+        }});
+      }});
+    }}
+    </script>
+    """,
+    unsafe_allow_html=True
+)
+
 # --- 2. BASE DE DATOS Y FUNCIONES ---
 def conectar_db():
     conn = sqlite3.connect('despensa_familiar.db')
