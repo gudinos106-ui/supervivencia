@@ -159,18 +159,12 @@ def apply_ultra_styles(image_file):
        
        /* Tamaño para el texto dentro de los botones y selectores */
        .stSelectbox, .stNumberInput, .stButton {{
-           font-size: 16px !important;
+           font-size: 14px !important;
        }}
        /* Ajuste para que los textos largos no se amontonen */
        p {{
-           font-size: 16px !important;
-           line-height: 1.2 !important;   
-       
-       }}
-       
-       /* 5. DISEÑO DE ENCABEZADOS DE TABLA */
-        .stMarkdown h3, .stMarkdown strong {{
-            color: #1f77b4 !important;
+           font-size: 14px !important;
+           line-height: 1 !important;  
      
        }}
 
@@ -182,13 +176,13 @@ def apply_ultra_styles(image_file):
        
        /* 2. Hace que los textos de la tabla sean más compactos */
        .stMarkdown p {{
-           font-size: 26px !important; /* Ajustamos un poco el tamaño letras para que no estire la celda */
+           font-size: 20px !important; /* Ajustamos un poco el tamaño letras para que no estire la celda */
            line-height: 1.2 !important; /* Reduce el espacio entre líneas de texto */
        }}
 
        /* 3. Ajuste específico para que el buscador no sea tan gigante */
        .stTextInput input {{
-           font-size: 30px !important;
+           font-size: 20px !important;
            padding: 15px !important;
        }}   
            
