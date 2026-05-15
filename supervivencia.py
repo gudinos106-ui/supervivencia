@@ -79,75 +79,62 @@ def apply_ultra_styles(image_file):
         /* ESTO CREA LA CAPA TRANSPARENTOSA DETRÁS DE LAS LETRAS */
         .block-container {{
           background-color: rgba(255, 255, 255, 0.70) !important; /* El 0.85 es la transparencia */
-          padding: 50px !important; 
-          border-radius: 30px !important; /* Bordes redondeados para que se vea moderno */
+          padding: 2rem !important; 
+          border-radius: 20px !important; /* Bordes redondeados para que se vea moderno */
           box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important; /* Una sombra externa para dar profundidad */
-          margin-top: 30px !important;
+          margin-top: 20px !important;
         }}
 
-        /* Ajuste para que los títulos resalten sobre la transparencia */
-        h1, h3 {{
-        background-color: rgba(255, 255, 255, 0.7);
-        border-radius: 10px;
-        padding: 10px;
-
+        /* 2. TEXTO GENERAL Y ETIQUETAS (PC) */
+        /* Bajamos de 30px a 18px para que no sea gigante */
+        label p, .stMarkdown p {{
+            font-size: 18px !important;
+            font-weight: bold !important;
+            color: #1e1e1e !important;
         }}
         
-        /* 3. ENCABEZADOS DE TABLA: Para que no se peguen */
-        .stMarkdown h3 {{
-            color: #1f77b4 !important;
-            font-size: 20px !important;
-            margin-bottom: 20px !important;
-            display: flex;
-            justify-content: space-between;
-            
+        /* 3. ENTRADAS DE DATOS (RECUADROS) */
+        /* Ajustamos el tamaño del texto dentro de los cuadros de escribir */
+        .stTextInput input, .stNumberInput input, .stSelectbox div {{
+            font-size: 16px !important;
+            padding: 5px !important;       
        }}
 
-       /* FUERZA BRUTA PARA TEXTO GENERAL */
-       html, body, [class*="st-"], .stMarkdown p, label {{
-           font-size: 30px !important;
-           line-height: 1.8 !important;
-       }}
-
-       /* ETIQUETAS DE FORMULARIO (MÁS GRANDES AÚN) */
-        .stWidgetLabel p {{
-            font-size: 28px !important;
-            font-weight: bold !important;
-            color: #000000 !important;
-       }}    
-       /* PESTAÑAS (TABS) */
-        button[data-baseweb="tab"] p {{
-            font-size: 28px !important;
-            font-weight: 800 !important;
-       }}
-       /* MÉTRICAS (Los números grandes de "46 días") */
+       /* 4. MÉTRICAS (Los números de "46 días") */
        [data-testid="stMetricValue"] {{
-           font-size: 100px !important;
-           font-weight: 900 !important;
-           color: #1f77b4 !important;    /* Un azul fuerte para que resalte */
-           line-height: 2 !important;
-       }}
-         
-        /* BOTONES */
-        .stButton button p {{
-            font-size: 23px !important;
-            font-weight: bold !important;
+           font-size: 45px !important; /* Estaba en 100px, ¡era demasiado! */
+           font-weight: 800 !important;
+           color: #1f77b4 !important;
        }}
 
-      /* TABLAS */
-      .stTable td, .stTable th {{
-          font-size: 24px !important;
+       /* 5. TÍTULOS */
+      h1 {{ font-size: 32px !important; text-align: center; }}
+      h3 {{ font-size: 24px !important; color: #1f77b4 !important; }}
+         
+       /* --- MODO CELULAR (Pelea final contra el desorden) --- */
+       @media (max-width: 640px) {{
+           /* Subimos la letra de 10px a 16px para que se pueda LEER */
+           label p, .stMarkdown p, p {{
+               font-size: 16px !important; 
+               line-height: 1.2 !important;        
        }}
        
-       /* TÍTULOS */
-       h1 {{ font-size: 40px !important; }}
-       h3 {{ font-size: 40px !important; color: #1f77b4 !important; }}
-       
-       /* --- MODO CELULAR --- */
-       @media (max-width: 640px) {{
-           .stMarkdown p, label {{
-               font-size: 10px !important; /* Letra pequeña para que quepa el cuadro */
-               line-height: 1.1 !important;
+       /* Ajustamos los recuadros para que no sean tan altos */
+       .stTextInput input, .stNumberInput input, .stSelectbox div {{
+           font-size: 14px !important;
+           min-height: 35px !important;
+      
+       }}
+        
+       /* Bajamos el padding del contenedor para ganar espacio */
+       .block-container {{
+           padding: 1rem !important;
+           margin-top: 10px !important;
+       }}
+
+       /* TABLAS */
+       .stTable td, .stTable th {{
+           font-size: 24px !important;
        }}
                
        /* Tamaño para los títulos de los campos (como 'Cuantas personas...') */
