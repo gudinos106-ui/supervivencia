@@ -466,7 +466,7 @@ with tab_calculadora:
 
      # 3. ENCABEZADOS: Van FUERA del else para que se vean siempre
         st.markdown("---")
-        pesos_tabla = [1, 0.4, 1, 1, 1, 0.4]
+        pesos_tabla = [1, 1, 1, 1, 1, 1]
 
         h1, h2, h3, h4, h5, h6 = st.columns(pesos_tabla)
         h1.write("**PRODUCTO**")
