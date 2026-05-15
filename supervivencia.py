@@ -149,6 +149,22 @@ def apply_ultra_styles(image_file):
                font-size: 10px !important; /* Letra pequeña para que quepa el cuadro */
                line-height: 1.1 !important;
        }}
+               
+       /* Tamaño para los títulos de los campos (como 'Cuantas personas...') */
+       label {
+           font-size: 18px !important;
+           font-weight: bold !important;
+           color: #2c3e50 !important;
+       }}
+       /* Tamaño para el texto dentro de los botones y selectores */
+       .stSelectbox, .stNumberInput, .stButton {
+           font-size: 16px !important;
+       }}
+       /* Ajuste para que los textos largos no se amontonen */
+       p {
+           font-size: 16px !important;
+           line-height: 1.2 !important;        
+       }}
             h1 {{ font-size: 30px !important; }}
             h3 {{ font-size: 24px !important; }}
             [data-testid="stMetricValue"] {{ font-size: 25px !important; }}
