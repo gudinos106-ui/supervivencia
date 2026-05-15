@@ -466,7 +466,7 @@ with tab_calculadora:
 
      # 3. ENCABEZADOS: Van FUERA del else para que se vean siempre
         st.markdown("---")
-        pesos_tabla = [1, 0.8, 1, 1, 1, 0.4]
+        pesos_tabla = [1, 0.4, 1, 1, 1, 0.4]
 
         h1, h2, h3, h4, h5, h6 = st.columns(pesos_tabla)
         h1.write("**PRODUCTO**")
@@ -509,12 +509,12 @@ with tab_calculadora:
 
              # 5. Dibujo de datos
             c1.write(f"**{p_nombre}**")
-            c2.write(f"📥Cantidad {cant_final} {u_txt}")
+            c2.write(f"**📦Cant:** {cant_final} {u_txt}")
             
             # 1. Recuperamos la fecha de vencimiento guardada (o 'N/A' si no hay)
             f_vence_str = row.get('FECHA_VENCIMIENTO', row.get('fecha_vencimiento', 'N/A'))
             # 2. Mostramos los datos en las columnas correspondientes
-            c3.write(f"📅Vence {f_vence_str}")  # Fecha del empaque
+            c3.write(f"**📅Vence:** {f_vence_str}")  # Fecha del empaque
 
             # 3. Lógica inteligente para la fecha de agotamiento
             if f_vence_str != 'N/A':
@@ -527,11 +527,11 @@ with tab_calculadora:
                     if dt_fin > dt_vence:
                        c4.write(f"⚠️ {dt_fin.strftime('%d/%m/%Y')}") 
                     else:
-                        c4.write(f"⏳Disponible {dt_fin.strftime('%d/%m/%Y')}")
+                        c4.write(f"⏳ {dt_fin.strftime('%d/%m/%Y')}")
                 except:
-                    c4.write(f"⏳Disponible {fecha_fin}")
+                    c4.write(f"**⏳Agota:** {fecha_fin}")
             else:
-                c4.write(f"⏳Disponible {fecha_fin}")
+                c4.write(f"**⏳Agota:** {fecha_fin}")
             
             # --- CÁLCULO DE TIEMPO CLARO (Idea de tu hija) ---
             meses_paz = dias_paz // 30
