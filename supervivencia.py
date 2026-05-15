@@ -9,7 +9,7 @@ import urllib.parse
 # --- 1. CONFIGURACIÓN ---
 st.set_page_config(
     page_title="Seguridad Alimentaria", 
-    page_icon="https://raw.githubusercontent.com/gudinos106-ui/supervivencia/refs/heads/main/Supervi.png",
+    page_icon="https://raw.githubusercontent.com/gudinos106-ui/supervivencia/refs/heads/main/supervi.png",
     layout="centered"
 
 st.markdown(
