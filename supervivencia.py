@@ -151,26 +151,23 @@ def apply_ultra_styles(image_file):
        }}
                
        /* Tamaño para los títulos de los campos (como 'Cuantas personas...') */
-       label {
+       label {{
            font-size: 18px !important;
            font-weight: bold !important;
            color: #2c3e50 !important;
        }}
+       
        /* Tamaño para el texto dentro de los botones y selectores */
-       .stSelectbox, .stNumberInput, .stButton {
+       .stSelectbox, .stNumberInput, .stButton {{
            font-size: 16px !important;
        }}
        /* Ajuste para que los textos largos no se amontonen */
-       p {
+       p {{
            font-size: 16px !important;
-           line-height: 1.2 !important;        
-       }}
-            h1 {{ font-size: 30px !important; }}
-            h3 {{ font-size: 24px !important; }}
-            [data-testid="stMetricValue"] {{ font-size: 25px !important; }}
-            button[data-baseweb="tab"] p {{ font-size: 14px !important; }}
+           line-height: 1.2 !important;   
        
        }}
+       
        /* 5. DISEÑO DE ENCABEZADOS DE TABLA */
         .stMarkdown h3, .stMarkdown strong {{
             color: #1f77b4 !important;
