@@ -1,6 +1,6 @@
 {
-  "name": "Control Alimentaria Supervivencia",
-  "short_name": "Súper",
+  "name": "Seguridad Alimentaria",
+  "short_name": "Seguri",
   "start_url": "https://tu-app-de-supervivencia.streamlit.app/",
   "display": "standalone",
   "background_color": "#ffffff",
