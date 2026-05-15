@@ -289,7 +289,7 @@ st.markdown('<h1>🛡 Control Alimentaria</h1>', unsafe_allow_html=True)
 # En lugar de st.markdown("### 📋 Tablero de Control Maestro") usa:
 st.markdown('<div class="section-header"><h3>📋 Calculadora de Alimentos</h3></div>', unsafe_allow_html=True)
 
-tab_calculadora, tab_emergencia, tab_comunidad = st.tabs([
+tab_calculadora, tab_emergencia, = st.tabs([
     "🏠 MI DESPENSA",  
     "🚨 KIT DE EMERGENCIA",
 ])
